@@ -80,39 +80,23 @@
                 </li>
 
 
-                <li class="has-sub">
-                    <a href="layout-api.html">
-                        <i class="entypo-layout"></i>
-                        <span class="title">USERS NAVIGATION</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="{{route('admin.sub.administratio')}}">
-                                <span class="title">Sub Administrator</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="layout-collapsed-sidebar.html">
-                                <span class="title">Reseller</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="layout-fixed-sidebar.html">
-                                <span class="title">Sub-Reseller</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="layout-chat-open.html">
-                                <span class="title">Credits History</span>
-                            </a>
-                        </li>
 
-                    </ul>
+                <li>
+                    <a href="{{route('admin.sub.administratio')}}" >
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Sub Administrator</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="index.html" target="_blank">
+                    <a href="{{route('admin.reseller')}}" >
                         <i class="entypo-monitor"></i>
-                        <span class="title">Frontend</span>
+                        <span class="title">Reseller</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('admin.sub.reseller')}}" >
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Sub-ReSeller</span>
                     </a>
                 </li>
 
@@ -133,8 +117,15 @@
 
                     <!-- Profile Info -->
                     <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-
+                        @if(request()->path() == 'admin/sub-administrator')
                         <h2>Sub-Administrator</h2>
+                            @endif
+                        @if(request()->path() == 'admin/reseller')
+                            <h2>Reseller</h2>
+                        @endif
+                        @if(request()->path() == 'admin/sub-reseller')
+                            <h2>Sub-Reseller</h2>
+                        @endif
 
 
                     </li>
