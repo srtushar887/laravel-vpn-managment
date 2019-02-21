@@ -99,6 +99,12 @@
                         <span class="title">Sub-ReSeller</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('admin.create.quick.user')}}" >
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Create Quick User</span>
+                    </a>
+                </li>
 
             </ul>
 
@@ -120,6 +126,13 @@
                         @if(request()->path() == 'admin/sub-administrator')
                         <h2>Sub-Administrator</h2>
                             @endif
+                        {{--@if(request()->path() == 'admin/create-sub-administrator')--}}
+                        {{--<h2>Create Sub-Administrator</h2>--}}
+                        {{--@endif--}}
+
+                        {{--@if(request()->path() == 'admin/sub-administrator-edit/')--}}
+                            {{--<h2>Update Sub-Administrator</h2>--}}
+                        {{--@endif--}}
                         @if(request()->path() == 'admin/reseller')
                             <h2>Reseller</h2>
                         @endif
@@ -144,7 +157,7 @@
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{asset('assets/admin/')}}/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-                            John Henderson
+                            {{Auth::user('admin')->name}}
                         </a>
 
                         <ul class="dropdown-menu">

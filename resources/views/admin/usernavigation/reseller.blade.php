@@ -5,7 +5,7 @@
 
 
 
-    <a   data-toggle="modal" data-target="#reseller_create" class="btn btn-primary pull-left">
+    <a href="{{route('craete.reseller')}}" class="btn btn-primary pull-left">
         <i class="entypo-plus"></i>
         Create New
     </a>
@@ -28,6 +28,7 @@
                     <th>Password</th>
                     <th>Upline</th>
                     <th>Credit</th>
+                    <th>User Status</th>
                     <th>Action</th>
 
                 </tr>
@@ -40,8 +41,13 @@
                         <td>{{ decrypt($resl->password)}}</td>
                         <td>{{$resl->upline_id}}</td>
                         <td>{{$resl->cradit}}</td>
+                        @if($resl->is_block == 0)
+                            <td><span class="label label-info">Active</span></td>
+                        @else
+                            <td><span class="label label-danger">Block</span></td>
+                        @endif
                         <td>
-                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#reseller-edit{{$resl->id}}">
+                            <a href="{{route('reseller.edit',$resl->id)}}" class="btn btn-default btn-sm btn-icon icon-left" >
                                 <i class="entypo-pencil"></i>
                                 Edit
                             </a>
@@ -49,6 +55,14 @@
                             <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#reseller-delete{{$resl->id}}">
                                 <i class="entypo-cancel"></i>
                                 Delete
+                            </a>
+                            <a href="{{route('admin.reseller.chnageper',$resl->id)}}" class="btn btn-info btn-sm btn-icon icon-left">
+                                <i class="entypo-info"></i>
+                                Change Permision
+                            </a>
+                            <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-block{{$resl->id}}">
+                                <i class="entypo-cancel"></i>
+                                Block
                             </a>
 
 
@@ -139,6 +153,30 @@
                         </div>
                     </div>
 
+                    <div class="modal fade custom-width modalfate" id="sub-subreseller-block{{$resl->id}}">
+                        <div class="modal-dialog" style="width: 60%;">
+                            <form action="{{route('admin.reseller.block')}}" method="post">
+                                @csrf
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Block Reseller</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <input type="hidden" name="block_reseller" value="{{$resl->id}}">
+                                        <h3 class="text-center">are you sure to block <strong>{{$resl->user_name}}</strong> ?</h3>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="" class="btn btn-info">Block</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
 
 

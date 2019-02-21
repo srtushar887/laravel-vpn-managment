@@ -5,7 +5,7 @@
 
 
 
-    <a   data-toggle="modal" data-target="#sub-administrator-create" class="btn btn-primary pull-left">
+    <a href="{{route('create.subadmin')}}" class="btn btn-primary pull-left">
     <i class="entypo-plus"></i>
     Create New
     </a>
@@ -28,6 +28,8 @@
                     <th>Password</th>
                     <th>Upline</th>
                     <th>Credit</th>
+                    <th>Exp. Date</th>
+                    <th>User Status</th>
                     <th>Action</th>
 
                 </tr>
@@ -40,8 +42,14 @@
                     <td>{{ decrypt($subad->password)}}</td>
                     <td>{{$subad->upline_id}}</td>
                     <td>{{$subad->cradit}}</td>
+                    <td>{{$subad->exp_date}}</td>
+                    @if($subad->is_active == 0)
+                    <td><span class="label label-info">Active</span></td>
+                    @else
+                        <td><span class="label label-danger">Block</span></td>
+                    @endif
                     <td>
-                    <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-administrator-edit{{$subad->id}}">
+                    <a href="{{route('sub.admin.edit',$subad->id)}}" class="btn btn-default btn-sm btn-icon icon-left" >
                         <i class="entypo-pencil"></i>
                         Edit
                     </a>
@@ -50,6 +58,14 @@
                         <i class="entypo-cancel"></i>
                         Delete
                     </a>
+                        <a href="{{route('admin.subadminis.chnageper',$subad->id)}}" class="btn btn-info btn-sm btn-icon icon-left">
+                            <i class="entypo-info"></i>
+                            Change Permision
+                        </a>
+                        <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-administrator-block{{$subad->id}}">
+                            <i class="entypo-cancel"></i>
+                            Block
+                        </a>
 
 
                     </td>
@@ -139,7 +155,30 @@
                     </div>
                 </div>
 
+                <div class="modal fade custom-width modalfate" id="sub-administrator-block{{$subad->id}}">
+                    <div class="modal-dialog" style="width: 60%;">
+                        <form action="{{route('admin.subadminis.block')}}" method="post">
+                            @csrf
+                            <div class="modal-content">
 
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Block Sub-Administrator</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <input type="hidden" name="block_sub_ad" value="{{$subad->id}}">
+                                    <h3 class="text-center">are you sure to block <strong>{{$subad->user_name}}</strong> ?</h3>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" id="" class="btn btn-info">Block</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
 
                     @endforeach

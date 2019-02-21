@@ -5,7 +5,7 @@
 
 
 
-    <a   data-toggle="modal" data-target="#subreseller_create" class="btn btn-primary pull-left">
+    <a href="{{route('create.subreseller')}}" class="btn btn-primary pull-left">
         <i class="entypo-plus"></i>
         Create New
     </a>
@@ -28,6 +28,7 @@
                     <th>Password</th>
                     <th>Upline</th>
                     <th>Credit</th>
+                    <th>User Status</th>
                     <th>Action</th>
 
                 </tr>
@@ -40,8 +41,13 @@
                         <td>{{ decrypt($subresl->password)}}</td>
                         <td>{{$subresl->upline_id}}</td>
                         <td>{{$subresl->cradit}}</td>
+                        @if($subresl->is_block == 0)
+                            <td><span class="label label-info">Active</span></td>
+                        @else
+                            <td><span class="label label-danger">Block</span></td>
+                        @endif
                         <td>
-                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#subreseller-edit{{$subresl->id}}">
+                            <a href="{{route('sub.reseller.edit',$subresl->id)}}" class="btn btn-default btn-sm btn-icon icon-left">
                                 <i class="entypo-pencil"></i>
                                 Edit
                             </a>
@@ -49,6 +55,15 @@
                             <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#subreseller-delete{{$subresl->id}}">
                                 <i class="entypo-cancel"></i>
                                 Delete
+                            </a>
+
+                            <a href="{{route('admin.subreseller.chnageper',$subresl->id)}}" class="btn btn-info btn-sm btn-icon icon-left">
+                                <i class="entypo-info"></i>
+                                Change Permision
+                            </a>
+                            <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-block{{$subresl->id}}">
+                                <i class="entypo-cancel"></i>
+                                Block
                             </a>
 
 
@@ -133,6 +148,31 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <button type="submit" id="" class="btn btn-info">Delete</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="modal fade custom-width modalfate" id="sub-subreseller-block{{$subresl->id}}">
+                        <div class="modal-dialog" style="width: 60%;">
+                            <form action="{{route('admin.subreseller.block')}}" method="post">
+                                @csrf
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Block Sub-Reseller</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <input type="hidden" name="block_subreseller" value="{{$subresl->id}}">
+                                        <h3 class="text-center">are you sure to block <strong>{{$subresl->user_name}}</strong> ?</h3>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="" class="btn btn-info">Block</button>
                                     </div>
                                 </div>
                             </form>

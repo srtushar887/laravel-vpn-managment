@@ -72,7 +72,7 @@
         <div class="login-content">
 
             <div class="form-login-error">
-{{--                @include('layouts.error')--}}
+                {{--                @include('layouts.error')--}}
 
                 <h3>Invalid login</h3>
                 <p>Enter <strong>demo</strong>/<strong>demo</strong> as login and password.</p>
@@ -80,67 +80,77 @@
             @if(Session::has('errorlogin'))
                 <h5 style="color: red">{{Session::get('errorlogin')}}</h5>
             @endif
-            <form method="post" action="{{route('admin.login.submit')}}" role="form" id="">
-                @csrf
+            {{--<form method="post" action="{{route('admin.login.submit')}}" role="form" id="">--}}
+                {{--@csrf--}}
+                {{--<div class="form-group">--}}
+
+                    {{--<div class="input-group">--}}
+                        {{--<div class="input-group-addon">--}}
+                            {{--<i class="entypo-user"></i>--}}
+                        {{--</div>--}}
+
+                        {{--<input type="text" class="form-control{{ $errors->has('user_name') ? ' is-invalid' : '' }}" name="user_name" value="{{ old('user_name') }}"  id="username" placeholder="User Name" autocomplete="off" />--}}
+
+                    {{--</div>--}}
+                    {{--@if ($errors->has('user_name'))--}}
+                        {{--<span class="invalid-feedback" role="alert">--}}
+                                        {{--<strong>{{ $errors->first('user_name') }}</strong>--}}
+                                    {{--</span>--}}
+                    {{--@endif--}}
+
+                {{--</div>--}}
+
+                {{--<div class="form-group">--}}
+
+                    {{--<div class="input-group">--}}
+                        {{--<div class="input-group-addon">--}}
+                            {{--<i class="entypo-key"></i>--}}
+                        {{--</div>--}}
+
+                        {{--<input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" placeholder="Password" autocomplete="off" />--}}
+
+                    {{--</div>--}}
+                    {{--@if ($errors->has('password'))--}}
+                        {{--<span class="invalid-feedback" role="alert">--}}
+                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
+                                    {{--</span>--}}
+                    {{--@endif--}}
+
+                {{--</div>--}}
+
                 <div class="form-group">
-
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="entypo-user"></i>
-                        </div>
-
-                        <input type="text" class="form-control{{ $errors->has('user_name') ? ' is-invalid' : '' }}" name="user_name" value="{{ old('user_name') }}"  id="username" placeholder="User Name" autocomplete="off" />
-
-                    </div>
-                    @if ($errors->has('user_name'))
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('user_name') }}</strong>
-                                    </span>
-                    @endif
-
+                    <a href="{{route('admin.login')}}">
+                    <button type="submit" class="btn btn-primary btn-block btn-login">
+                        <i class="entypo-login"></i>
+                        Login As Admin
+                    </button>
+                    </a>
                 </div>
-
-                <div class="form-group">
-
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="entypo-key"></i>
-                        </div>
-
-                        <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" placeholder="Password" autocomplete="off" />
-
-                    </div>
-                    @if ($errors->has('password'))
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                    @endif
-
-                </div>
-
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block btn-login">
                         <i class="entypo-login"></i>
-                        Login In
+                        Login As Reseller
                     </button>
                 </div>
                 <div class="form-group">
-                    <a href="{{url('/')}}">
+
                     <button type="button" class="btn btn-primary btn-block btn-login">
                         <i class="entypo-login"></i>
-                        Return Back
+                        Login As Sub-Reseller
                     </button>
+
                 </div>
-                </a>
 
 
 
-            </form>
+            {{--</form>--}}
 
 
             <div class="login-bottom-links" style="margin-top: -30px">
 
                 <a href="extra-forgot-password.html" class="link">Forgot your password?</a>
+                <br>
+
 
                 <br />
 
