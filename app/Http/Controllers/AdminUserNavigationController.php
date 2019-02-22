@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Reseller;
 use App\sub_administrator;
 use App\Subreseller;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -120,6 +121,14 @@ class AdminUserNavigationController extends Controller
         return back()->with('success','Sub-Administratror Blocked Successfully');
     }
 
+    public function sub_administrator_unblock(Request $request)
+    {
+        $unblock_sub_add = sub_administrator::where('id',$request->unblock_sub_ad)->first();
+        $unblock_sub_add->is_active = 0;
+        $unblock_sub_add->save();
+        return back()->with('success','Sub-Administratror Unblocked Successfully');
+    }
+
 
     public function reseller()
     {
@@ -218,6 +227,14 @@ class AdminUserNavigationController extends Controller
         $block_reseller->is_block = 1;
         $block_reseller->save();
         return back()->with('success','Reseller Blocked Successfully');
+    }
+
+    public function reseller_unblock(Request $request)
+    {
+        $unblock_reseller = Reseller::where('id',$request->unblock_reseller)->first();
+        $unblock_reseller->is_block = 0;
+        $unblock_reseller->save();
+        return back()->with('success','Reseller Unblocked Successfully');
     }
 
     public function sub_reseller()
@@ -323,6 +340,14 @@ class AdminUserNavigationController extends Controller
         return back()->with('success','Sub-Reseller Blocked Successfully');
     }
 
+    public function sub_reseller_unblock(Request $request)
+    {
+        $sub_reseller_unblcok = Subreseller::where('id',$request->unblock_subreseller)->first();
+        $sub_reseller_unblcok->is_block = 0;
+        $sub_reseller_unblcok->save();
+        return back()->with('success','Sub-Reseller Unblocked Successfully');
+    }
+
 
     public function create_quick_user()
     {
@@ -360,6 +385,179 @@ class AdminUserNavigationController extends Controller
             return back()->with('success','Quick User Created Successfully');
 
         }
+    }
+
+
+    public function free_user()
+    {
+        $all_free_user = User::paginate(15);
+        return view('admin.usernavigation.free-user',compact('all_free_user'));
+    }
+
+    public function create_free_user()
+    {
+        return view('admin.usernavigation.free-user-create');
+    }
+
+    public function create_free_user_store(Request $request)
+    {
+        $free_user = new User();
+        $free_user->name = $request->name;
+        $free_user->user_name = $request->user_name;
+        $free_user->cradit = $request->cradit;
+        $free_user->password = encrypt($request->password);
+        $free_user->upline_id = Auth::user()->id;
+        $free_user->is_block = 0;
+        $free_user->is_block = 0;
+        $free_user->is_exp = null;
+        $free_user->save();
+        return back()->with('success','Free User Created Successfully');
+
+
+    }
+
+    public function free_user_edit_data($id)
+    {
+        $edit_free_user = User::where('id',$id)->first();
+        return view('admin.usernavigation.free-user-edit',compact('edit_free_user'));
+    }
+
+    public function free_user_edit(Request $request)
+    {
+        $edit_user = User::where('id',$request->edit_free_user)->first();
+        $edit_user->name = $request->name;
+        $edit_user->user_name = $request->user_name;
+        $edit_user->cradit = $request->cradit;
+        $edit_user->password = encrypt($request->password);
+        $edit_user->upline_id = Auth::user()->id;
+        $edit_user->is_block = 0;
+        $edit_user->is_block = 0;
+        $edit_user->is_exp = null;
+        $edit_user->save();
+        return back()->with('success','Free User Updated Successfully');
+    }
+
+    public function free_user_delete(Request $request)
+    {
+        $delete_free_user = User::where('id',$request->delete_fre_user)->first();
+        $delete_free_user->delete();
+        return back()->with('success','Free User Deleted Successfully');
+    }
+
+    public function free_user_permission_chnage($id)
+    {
+        $user_permission = User::where('id',$id)->first();
+        return view('admin.usernavigation.free-user-permission',compact('user_permission'));
+    }
+
+    public function free_user_permission_chnage_save(Request $request)
+    {
+        $per = $request->chnage_per;
+        if ($per == 2)
+        {
+            $create_sub_administrator = new sub_administrator();
+            $create_sub_administrator->name = $request->name;
+            $create_sub_administrator->user_name = $request->user_name;
+            $create_sub_administrator->cradit = $request->cradit;
+            $create_sub_administrator->exp_date = Carbon::now()->addMonth($request->cradit);
+            $create_sub_administrator->is_exp = 0;
+            $create_sub_administrator->is_active = 0;
+            $create_sub_administrator->password = encrypt($request->password);
+            $create_sub_administrator->upline_id = Auth::user()->id;
+            $create_sub_administrator->save();
+
+
+            $del_user = User::where('id',$request->id)->first();
+            $del_user->delete();
+
+            return redirect(route('admin.freeuser'))->with('success','Permission Changed');
+        }
+
+        if ($per == 3)
+        {
+            $new_reseller = new Reseller();
+            $new_reseller->name = $request->name;
+            $new_reseller->user_name = $request->user_name;
+            $new_reseller->cradit = $request->cradit;
+            $new_reseller->password = encrypt($request->password);
+            $new_reseller->upline_id = Auth::user()->id;
+            $new_reseller->save();
+
+            $del_user = User::where('id',$request->id)->first();
+            $del_user->delete();
+            return redirect(route('admin.freeuser'))->with('success','Permission Changed');
+
+        }
+
+        if ($per == 4)
+        {
+            $new_sub_reseller = new Subreseller();
+            $new_sub_reseller->name = $request->name;
+            $new_sub_reseller->user_name = $request->user_name;
+            $new_sub_reseller->cradit = $request->cradit;
+            $new_sub_reseller->password = encrypt($request->password);
+            $new_sub_reseller->upline_id = Auth::user()->id;
+            $new_sub_reseller->is_block = 0;
+            $new_sub_reseller->save();
+
+            $del_user = User::where('id',$request->id)->first();
+            $del_user->delete();
+            return redirect(route('admin.freeuser'))->with('success','Permission Changed');
+
+        }
+
+    }
+
+    public function free_user_block(Request $request)
+    {
+        $blcok_free_user = User::where('id',$request->block_free_user)->first();
+        $blcok_free_user->is_block = 1;
+        $blcok_free_user->save();
+        return back()->with('success','Free User Blocked Successfully');
+    }
+
+    public function free_user_unblock(Request $request)
+    {
+        $unblcok_free_user = User::where('id',$request->unblock_free_user)->first();
+        $unblcok_free_user->is_block = 0;
+        $unblcok_free_user->save();
+        return back()->with('success','Free User Unblocked Successfully');
+    }
+
+    public function bulk_user()
+    {
+        return view('admin.usernavigation.bulk-user');
+    }
+
+    public function bulk_user_save(Request $request)
+    {
+        $number = $request->number_of_user;
+        for ($i=0;$i<$number;$i++)
+        {
+
+            $user = new User();
+            $user->user_name = rand(000000,999999);
+            $user->password = encrypt(rand(000000,999999));
+            $user->save();
+
+        }
+
+        return back()->with('success','Bulk User Created Successfully');
+
+    }
+
+    public function add_credit()
+    {
+        $all_sub_adm = sub_administrator::all();
+        return view('admin.usernavigation.add-credit',compact('all_sub_adm'));
+    }
+
+    public function sub_adminstrator_credit_add(Request $request)
+    {
+        $sub_admin = sub_administrator::where('id',$request->add_credit)->first();
+        $sub_admin->cradit = $sub_admin->cradit + $request->cradit;
+        $sub_admin->save();
+        return back()->with('success','Credit Added Successfully');
     }
 
 }

@@ -100,9 +100,29 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{route('admin.freeuser')}}" >
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Add VPN User</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{route('admin.create.quick.user')}}" >
                         <i class="entypo-monitor"></i>
                         <span class="title">Create Quick User</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('admin.bulk.user')}}" >
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Free User</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('admin.credit')}}" >
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Add Credit</span>
                     </a>
                 </li>
 

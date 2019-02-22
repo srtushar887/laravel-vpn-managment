@@ -60,10 +60,17 @@
                                 <i class="entypo-info"></i>
                                 Change Permision
                             </a>
+                            @if($resl->is_block == 0)
                             <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-block{{$resl->id}}">
                                 <i class="entypo-cancel"></i>
                                 Block
                             </a>
+                                @else
+                                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-unblock{{$resl->id}}">
+                                    <i class="entypo-cancel"></i>
+                                    Unblock
+                                </a>
+                                @endif
 
 
                         </td>
@@ -172,6 +179,31 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <button type="submit" id="" class="btn btn-info">Block</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="modal fade custom-width modalfate" id="sub-subreseller-unblock{{$resl->id}}">
+                        <div class="modal-dialog" style="width: 60%;">
+                            <form action="{{route('admin.reseller.unblock')}}" method="post">
+                                @csrf
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Unblock Reseller</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <input type="hidden" name="unblock_reseller" value="{{$resl->id}}">
+                                        <h3 class="text-center">are you sure to unblock <strong>{{$resl->user_name}}</strong> ?</h3>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="" class="btn btn-info">Unblock</button>
                                     </div>
                                 </div>
                             </form>
