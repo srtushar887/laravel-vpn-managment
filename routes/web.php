@@ -42,6 +42,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('sub-administrator-change-permision','AdminUserNavigationController@sub_administrator_chnage_permision_save')->name('sub.administrator.chnage.permision.save');
        Route::post('sub-administrator-block','AdminUserNavigationController@sub_administrator_block')->name('admin.subadminis.block');
        Route::post('sub-administrator-unblock','AdminUserNavigationController@sub_administrator_unblock')->name('admin.subadminis.unblock');
+       Route::post('sub-administrator-add-cradit','AdminUserNavigationController@sub_administrator_add_cradit')->name('sub.administrator.add.credit.bal');
 
 
        //reseller
@@ -55,9 +56,10 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('reseller-permission-change','AdminUserNavigationController@reseller_permission_chnage_save')->name('sub.reseller.chnage.permision.save');
        Route::post('reseller-block','AdminUserNavigationController@reseller_block')->name('admin.reseller.block');
        Route::post('reseller-unblock','AdminUserNavigationController@reseller_unblock')->name('admin.reseller.unblock');
+       Route::post('reseller-add-cradit','AdminUserNavigationController@reseller_add_cradit')->name('reseller.add.credit.bal');
 
 
-       //reseller
+       //sub-reseller
        Route::get('sub-reseller','AdminUserNavigationController@sub_reseller')->name('admin.sub.reseller');
        Route::get('create-sub-reseller','AdminUserNavigationController@sub_reseller_create_new')->name('create.subreseller');
        Route::post('sub-reseller','AdminUserNavigationController@sub_reseller_create')->name('admin.subreseller.create');
@@ -68,6 +70,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('sub-reseller-permission-change','AdminUserNavigationController@sub_reseller_permission_chnage_save')->name('sub.subreseller.chnage.permision.save');
        Route::post('sub-reseller-block','AdminUserNavigationController@sub_reseller_block')->name('admin.subreseller.block');
        Route::post('sub-reseller-unblock','AdminUserNavigationController@sub_reseller_unblock')->name('admin.subreseller.unblock');
+       Route::post('sub-reseller-add-cradit','AdminUserNavigationController@sub_reseller_add_cradit')->name('subreseller.add.credit.bal');
 
 
 
@@ -82,6 +85,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('free-user-permission-change','AdminUserNavigationController@free_user_permission_chnage_save')->name('freeuser.chnage.permision.save');
        Route::post('free-user-block','AdminUserNavigationController@free_user_block')->name('admin.free.user.block');
        Route::post('free-user-unblock','AdminUserNavigationController@free_user_unblock')->name('admin.free.user.unblock');
+       Route::post('free-user-add-cradit','AdminUserNavigationController@free_user_add_cradit')->name('freeuser.add.credit.bal');
 
 
        //create vpn
@@ -95,7 +99,22 @@ Route::group(['middleware'=>['auth:admin']],function (){
        //add credit
        Route::get('add-credit','AdminUserNavigationController@add_credit')->name('admin.credit');
        Route::post('sub-administrator-credit-add','AdminUserNavigationController@sub_adminstrator_credit_add')->name('admin.subadmintator.credit.add');
+       Route::get('reseller-credit-add','AdminUserNavigationController@reseller_credit')->name('admin.credit.reseller');
+       Route::post('reseller-credit-add','AdminUserNavigationController@reseller_credit_save')->name('admin.reseller.credit.add');
+       Route::get('sub-reseller-credit-add','AdminUserNavigationController@subreseller_credit')->name('admin.credit.subreseller.add');
+       Route::post('sub-reseller-credit-add','AdminUserNavigationController@subreseller_credit_save')->name('admin.subreseller.credit.add');
 
+
+       //time duration
+       Route::get('add-sub-administration-time-duration','AdminUserNavigationController@sub_ad_time_duration')->name('admin.time.duration');
+       Route::get('add-sub-administration-time-duration-select/{id}','AdminUserNavigationController@sub_ad_time_duration_select')->name('sub.admin.timedur');
+       Route::post('add-sub-administration-time-duration-select','AdminUserNavigationController@sub_ad_time_duration_select_save')->name('subadmin.time.save');
+       Route::get('add-reseller-time-duration','AdminUserNavigationController@reseller_time_duration')->name('admin.reseller.time.duration');
+       Route::get('add-reseller-time-duration-select/{id}','AdminUserNavigationController@reseller_time_duration_select')->name('reseller.timedur');
+       Route::post('add-reseller-time-duration-select','AdminUserNavigationController@reseller_time_duration_select_save')->name('reseller.time.save');
+       Route::get('add-sub-reseller-time-duration','AdminUserNavigationController@subreseller_time_duration')->name('admin.reseller.time.duration');
+       Route::get('add-sub-reseller-time-duration-select/{id}','AdminUserNavigationController@subreseller_time_duration_select')->name('subreseller.timedur');
+       Route::post('add-sub-reseller-time-duration-select','AdminUserNavigationController@subreseller_time_duration_select_save')->name('subreseller.time.save');
 
 
 

@@ -5,15 +5,15 @@
 
 
 
-    <a href="{{route('admin.credit')}}" class="btn btn-primary pull-left" >
+    <a href="{{route('admin.time.duration')}}" class="btn btn-primary pull-left" >
         <i class="entypo-plus"></i>
         Sub Administrator
     </a>
-    <a href="{{route('admin.credit.reseller')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('admin.reseller.time.duration')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Reseller
     </a>
-    <a href="{{route('admin.credit.subreseller.add')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('admin.reseller.time.duration')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Sub Reseller
     </a>
@@ -46,7 +46,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($all_sub_adm as $alsuba)
+                @foreach($time_reseller as $alsuba)
                     <tr>
                         <td>{{$alsuba->name}}</td>
                         <td>{{$alsuba->user_name}}</td>
@@ -61,9 +61,9 @@
                         <td>{{$alsuba->exp_date}}</td>
                         <td>
 
-                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-administrator-add-credit{{$alsuba->id}}">
+                            <a href="{{route('reseller.timedur',$alsuba->id)}}" class="btn btn-default btn-sm btn-icon icon-left" >
                                 <i class="entypo-cancel"></i>
-                                Add Credit
+                                Add Time Duration
                             </a>
 
 

@@ -125,6 +125,12 @@
                         <span class="title">Add Credit</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('admin.time.duration')}}" >
+                        <i class="entypo-monitor"></i>
+                        <span class="title">Add Time Duration</span>
+                    </a>
+                </li>
 
             </ul>
 

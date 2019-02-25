@@ -129,6 +129,16 @@ class AdminUserNavigationController extends Controller
         return back()->with('success','Sub-Administratror Unblocked Successfully');
     }
 
+    public function sub_administrator_add_cradit(Request $request)
+    {
+        $card = sub_administrator::where('id',$request->add_crdt)->first();
+        $card->cradit = $request->cradit;
+        $card->exp_date = Carbon::now()->addMonth($request->cradit);
+        $card->save();
+        return back()->with('success','Cradit Added Successfully');
+
+    }
+
 
     public function reseller()
     {
@@ -235,6 +245,16 @@ class AdminUserNavigationController extends Controller
         $unblock_reseller->is_block = 0;
         $unblock_reseller->save();
         return back()->with('success','Reseller Unblocked Successfully');
+    }
+
+    public function reseller_add_cradit(Request $request)
+    {
+        $r_cr_add = Reseller::where('id',$request->add_crdt)->first();
+        $r_cr_add->cradit = $request->cradit;
+        $r_cr_add->exp_date = Carbon::now()->addMonth($request->cradit);
+        $r_cr_add->save();
+        return back()->with('success','Cradit Added Successfully');
+
     }
 
     public function sub_reseller()
@@ -346,6 +366,15 @@ class AdminUserNavigationController extends Controller
         $sub_reseller_unblcok->is_block = 0;
         $sub_reseller_unblcok->save();
         return back()->with('success','Sub-Reseller Unblocked Successfully');
+    }
+
+    public function sub_reseller_add_cradit(Request $request)
+    {
+        $sub_res_add_cr = Subreseller::where('id',$request->add_crdt)->first();
+        $sub_res_add_cr->cradit = $request->cradit;
+        $sub_res_add_cr->exp_date = Carbon::now()->addMonth($request->cradit);
+        $sub_res_add_cr->save();
+        return back()->with('success','Cradit Added Successfully');
     }
 
 
@@ -524,6 +553,15 @@ class AdminUserNavigationController extends Controller
         return back()->with('success','Free User Unblocked Successfully');
     }
 
+    public function free_user_add_cradit(Request $request)
+    {
+        $free_user_crd_ad = User::where('id',$request->add_crdt)->first();
+        $free_user_crd_ad->cradit = $request->cradit;
+        $free_user_crd_ad->exp_date = Carbon::now()->addMonth($request->cradit);
+        $free_user_crd_ad->save();
+        return back()->with('success','Cradit Added Successfully');
+    }
+
     public function bulk_user()
     {
         return view('admin.usernavigation.bulk-user');
@@ -542,7 +580,7 @@ class AdminUserNavigationController extends Controller
 
         }
 
-        return back()->with('success','Bulk User Created Successfully');
+        return redirect(route('admin.freeuser'))->with('success','Bulk User Created Successfully');
 
     }
 
@@ -555,9 +593,197 @@ class AdminUserNavigationController extends Controller
     public function sub_adminstrator_credit_add(Request $request)
     {
         $sub_admin = sub_administrator::where('id',$request->add_credit)->first();
-        $sub_admin->cradit = $sub_admin->cradit + $request->cradit;
+        $sub_admin->cradit = $request->cradit;
+        $sub_admin->exp_date = Carbon::now()->addMonth($request->cradit);
         $sub_admin->save();
         return back()->with('success','Credit Added Successfully');
+    }
+
+    public function reseller_credit()
+    {
+        $reseller = Reseller::paginate(15);
+       return view('admin.usernavigation.reseller-add-credit',compact('reseller'));
+    }
+
+    public function reseller_credit_save(Request $request)
+    {
+        $resel_add_cred = Reseller::where('id',$request->add_credit)->first();
+        $resel_add_cred->cradit = $request->cradit;
+        $resel_add_cred->exp_date = Carbon::now()->addMonth($request->cradit);
+        $resel_add_cred->save();
+        return back()->with('success','Credit Added Successfully');
+    }
+
+    public function subreseller_credit()
+    {
+        $subresller = Subreseller::paginate(15);
+        return view('admin.usernavigation.subreseller-add-credit',compact('subresller'));
+    }
+
+    public function subreseller_credit_save(Request $request)
+    {
+        $sub_resl_save = Subreseller::where('id',$request->add_credit)->first();
+        $sub_resl_save->cradit = $request->cradit;
+        $sub_resl_save->exp_date = Carbon::now()->addMonth($request->cradit);
+        $sub_resl_save->save();
+        return back()->with('success','Credit Added Successfully');
+    }
+
+    public function sub_ad_time_duration()
+    {
+        $time_sub_admin = sub_administrator::paginate(15);
+        return view('admin.usernavigation.sub-admin-time-duration',compact('time_sub_admin'));
+    }
+
+    public function sub_ad_time_duration_select($id)
+    {
+        $sele_sub_admin = sub_administrator::where('id',$id)->first();
+        return view('admin.usernavigation.select-sub-admin-time',compact('sele_sub_admin'));
+    }
+
+    public function sub_ad_time_duration_select_save(Request $request)
+    {
+
+        $time = $request->select_time;
+        if ($time == 2)
+        {
+            $sub_admin_t = sub_administrator::where('id',$request->id)->first();
+            $sub_admin_t->exp_date = Carbon::now()->addHour(1);
+            $sub_admin_t->save();
+            return redirect(route('admin.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 3)
+        {
+            $sub_admin_t = sub_administrator::where('id',$request->id)->first();
+            $sub_admin_t->exp_date = Carbon::now()->addHour(2);
+            $sub_admin_t->save();
+            return redirect(route('admin.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 4)
+        {
+            $sub_admin_t = sub_administrator::where('id',$request->id)->first();
+            $sub_admin_t->exp_date = Carbon::now()->addDays(5);
+            $sub_admin_t->save();
+            return redirect(route('admin.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 5)
+        {
+            $sub_admin_t = sub_administrator::where('id',$request->id)->first();
+            $sub_admin_t->exp_date = Carbon::now()->addDays(10);
+            $sub_admin_t->save();
+            return redirect(route('admin.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 6)
+        {
+            $sub_admin_t = sub_administrator::where('id',$request->id)->first();
+            $sub_admin_t->exp_date = Carbon::now()->addDays(30);
+            $sub_admin_t->save();
+            return redirect(route('admin.time.duration'))->with('success','Time Added Successfully');
+        }
+    }
+
+    public function reseller_time_duration()
+    {
+        $time_reseller = Reseller::paginate(15);
+        return view('admin.usernavigation.reseller-time-duration',compact('time_reseller'));
+    }
+
+    public function reseller_time_duration_select($id)
+    {
+        $select_reseller_time = Reseller::where('id',$id)->first();
+        return view('admin.usernavigation.select-reseller-time',compact('select_reseller_time'));
+    }
+
+    public function reseller_time_duration_select_save(Request $request)
+    {
+        $time = $request->select_time;
+        if ($time == 2)
+        {
+            $sub_reseller_t = Reseller::where('id',$request->id)->first();
+            $sub_reseller_t->exp_date = Carbon::now()->addHour(1);
+            $sub_reseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 3)
+        {
+            $sub_reseller_t = Reseller::where('id',$request->id)->first();
+            $sub_reseller_t->exp_date = Carbon::now()->addHour(2);
+            $sub_reseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 4)
+        {
+            $sub_reseller_t = Reseller::where('id',$request->id)->first();
+            $sub_reseller_t->exp_date = Carbon::now()->addDays(5);
+            $sub_reseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 5)
+        {
+            $sub_reseller_t = Reseller::where('id',$request->id)->first();
+            $sub_reseller_t->exp_date = Carbon::now()->addDays(10);
+            $sub_reseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 6)
+        {
+            $sub_reseller_t = Reseller::where('id',$request->id)->first();
+            $sub_reseller_t->exp_date = Carbon::now()->addDays(30);
+            $sub_reseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+    }
+
+    public function subreseller_time_duration()
+    {
+        $subreseler = Subreseller::paginate(15);
+        return view('admin.usernavigation.subreseller-time-duration',compact('subreseler'));
+    }
+
+    public function subreseller_time_duration_select($id)
+    {
+        $select_time_subreseler = Subreseller::where('id',$id)->first();
+        return view('admin.usernavigation.select-subreseller-time-duration',compact('select_time_subreseler'));
+    }
+
+    public function subreseller_time_duration_select_save(Request $request)
+    {
+        $time = $request->select_time;
+        if ($time == 2)
+        {
+            $subreseller_t = Subreseller::where('id',$request->id)->first();
+            $subreseller_t->exp_date = Carbon::now()->addHour(1);
+            $subreseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 3)
+        {
+            $subreseller_t = Subreseller::where('id',$request->id)->first();
+            $subreseller_t->exp_date = Carbon::now()->addHour(2);
+            $subreseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 4)
+        {
+            $subreseller_t = Subreseller::where('id',$request->id)->first();
+            $subreseller_t->exp_date = Carbon::now()->addDays(5);
+            $subreseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 5)
+        {
+            $subreseller_t = Subreseller::where('id',$request->id)->first();
+            $subreseller_t->exp_date = Carbon::now()->addDays(10);
+            $subreseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
+        if ($time == 6)
+        {
+            $subreseller_t = Subreseller::where('id',$request->id)->first();
+            $subreseller_t->exp_date = Carbon::now()->addDays(30);
+            $subreseller_t->save();
+            return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
+        }
     }
 
 }

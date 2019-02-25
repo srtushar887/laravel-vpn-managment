@@ -13,7 +13,7 @@
         <i class="entypo-plus"></i>
         Reseller
     </a>
-    <a href="{{route('admin.credit.subreseller.add')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('craete.reseller')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Sub Reseller
     </a>
@@ -46,22 +46,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($all_sub_adm as $alsuba)
+                @foreach($reseller as $reselc)
                     <tr>
-                        <td>{{$alsuba->name}}</td>
-                        <td>{{$alsuba->user_name}}</td>
-                        <td>{{ decrypt($alsuba->password)}}</td>
-                        <td>{{$alsuba->upline_id}}</td>
-                        <td>{{$alsuba->cradit}}</td>
-                        @if($alsuba->is_block == 0)
+                        <td>{{$reselc->name}}</td>
+                        <td>{{$reselc->user_name}}</td>
+                        <td>{{ decrypt($reselc->password)}}</td>
+                        <td>{{$reselc->upline_id}}</td>
+                        <td>{{$reselc->cradit}}</td>
+                        @if($reselc->is_block == 0)
                             <td><span class="label label-info">Active</span></td>
                         @else
                             <td><span class="label label-danger">Block</span></td>
                         @endif
-                        <td>{{$alsuba->exp_date}}</td>
+                        <td>{{$reselc->exp_date}}</td>
                         <td>
 
-                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-administrator-add-credit{{$alsuba->id}}">
+                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-administrator-add-credit{{$reselc->id}}">
                                 <i class="entypo-cancel"></i>
                                 Add Credit
                             </a>
@@ -75,9 +75,9 @@
 
 
 
-                    <div class="modal fade custom-width modalfate" id="sub-administrator-add-credit{{$alsuba->id}}">
+                    <div class="modal fade custom-width modalfate" id="sub-administrator-add-credit{{$reselc->id}}">
                         <div class="modal-dialog" style="width: 60%;">
-                            <form action="{{route('admin.subadmintator.credit.add')}}" method="post">
+                            <form action="{{route('admin.reseller.credit.add')}}" method="post">
                                 @csrf
                                 <div class="modal-content">
 
@@ -87,7 +87,7 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <input type="hidden" name="add_credit" value="{{$alsuba->id}}">
+                                        <input type="hidden" name="add_credit" value="{{$reselc->id}}">
                                         <input type="number" class="form-control" name="cradit">
                                     </div>
 

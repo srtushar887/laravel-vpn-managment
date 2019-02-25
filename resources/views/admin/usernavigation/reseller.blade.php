@@ -28,6 +28,7 @@
                     <th>Password</th>
                     <th>Upline</th>
                     <th>Credit</th>
+                    <th>Exp date</th>
                     <th>User Status</th>
                     <th>Action</th>
 
@@ -41,6 +42,7 @@
                         <td>{{ decrypt($resl->password)}}</td>
                         <td>{{$resl->upline_id}}</td>
                         <td>{{$resl->cradit}}</td>
+                        <td>{{$resl->exp_date}}</td>
                         @if($resl->is_block == 0)
                             <td><span class="label label-info">Active</span></td>
                         @else
@@ -71,6 +73,10 @@
                                     Unblock
                                 </a>
                                 @endif
+                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-add-cradit{{$resl->id}}">
+                                <i class="entypo-cancel"></i>
+                                Add Cradit
+                            </a>
 
 
                         </td>
@@ -210,7 +216,38 @@
                         </div>
                     </div>
 
+                    <div class="modal fade custom-width modalfate" id="sub-subreseller-add-cradit{{$resl->id}}">
+                        <div class="modal-dialog" style="width: 60%;">
+                            <form action="{{route('reseller.add.credit.bal')}}" method="post">
+                                @csrf
+                                <div class="modal-content">
 
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Add Cradit</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+
+
+                                        <div class="form-group">
+                                            <label>Cradit</label>
+                                            <input type="hidden" name="add_crdt" value="{{$resl->id}}">
+                                            <input type="text"  class="form-control fullname" name="cradit"  placeholder="Enter Cradit">
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="" class="btn btn-info">Add</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                 @endforeach
 

@@ -74,6 +74,10 @@
                                     Unblock
                                 </a>
                             @endif
+                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#frr-user-add-cradit{{$fuser->id}}">
+                                <i class="entypo-cancel"></i>
+                                Add Cradit
+                            </a>
 
                         </td>
                     </tr>
@@ -156,6 +160,38 @@
                         </div>
                     </div>
 
+                    <div class="modal fade custom-width modalfate" id="frr-user-add-cradit{{$fuser->id}}">
+                        <div class="modal-dialog" style="width: 60%;">
+                            <form action="{{route('freeuser.add.credit.bal')}}" method="post">
+                                @csrf
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Add Cradit</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+
+
+                                        <div class="form-group">
+                                            <label>Cradit</label>
+                                            <input type="hidden" name="add_crdt" value="{{$fuser->id}}">
+                                            <input type="text"  class="form-control fullname" name="cradit"  placeholder="Enter Cradit">
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="" class="btn btn-info">Add</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                 @endforeach
 
