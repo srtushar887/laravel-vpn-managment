@@ -23,7 +23,6 @@
             <table class="table table-bordered responsive">
                 <thead>
                 <tr>
-                    <th>Name</th>
                     <th>User Name</th>
                     <th>Password</th>
                     <th>Upline</th>
@@ -37,7 +36,6 @@
                 <tbody>
                 @foreach($all_free_user as $fuser)
                     <tr>
-                        <td>{{$fuser->name}}</td>
                         <td>{{$fuser->user_name}}</td>
                         <td>{{ decrypt($fuser->password)}}</td>
                         <td>{{$fuser->upline_id}}</td>

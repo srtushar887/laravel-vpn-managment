@@ -120,6 +120,13 @@
                 </li>
 
                 <li>
+                    <a href="{{route('admin.all.user')}}" >
+                        <i class="entypo-monitor"></i>
+                        <span class="title">All User</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{route('admin.credit')}}" >
                         <i class="entypo-monitor"></i>
                         <span class="title">Add Credit</span>

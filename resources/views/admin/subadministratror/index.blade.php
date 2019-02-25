@@ -28,7 +28,7 @@
                     <th>Password</th>
                     <th>Upline</th>
                     <th>Credit</th>
-                    <th>Exp. Date</th>
+                    <th>Created Date</th>
                     <th>User Status</th>
                     <th>Action</th>
 
@@ -42,7 +42,7 @@
                     <td>{{ decrypt($subad->password)}}</td>
                     <td>{{$subad->upline_id}}</td>
                     <td>{{$subad->cradit}}</td>
-                    <td>{{$subad->exp_date}}</td>
+                    <td>{{$subad->created_at}}</td>
                     @if($subad->is_active == 0)
                     <td><span class="label label-info">Active</span></td>
                     @else

@@ -28,15 +28,15 @@
 
                     <input type="text" class="form-control" name="password" value="{{rand(000000,999999)}}" data-validate="maxlength[2]" placeholder="Enter Password" />
                 </div>
-                <div class="form-group">
-                    <label class="control-label">Select Permision</label>
-                    <select class="form-control" name="sel_per">
-                        <option value="0">select any</option>
-                        <option value="1">Sub Admistrator</option>
-                        <option value="2">Reseller</option>
-                        <option value="3">Sub Reseller</option>
-                    </select>
-                </div>
+                {{--<div class="form-group">--}}
+                    {{--<label class="control-label">Select Permision</label>--}}
+                    {{--<select class="form-control" name="sel_per">--}}
+                        {{--<option value="0">select any</option>--}}
+                        {{--<option value="1">Sub Admistrator</option>--}}
+                        {{--<option value="2">Reseller</option>--}}
+                        {{--<option value="3">Sub Reseller</option>--}}
+                    {{--</select>--}}
+                {{--</div>--}}
 
 
                 <div class="form-group">

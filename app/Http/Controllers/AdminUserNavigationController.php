@@ -385,35 +385,43 @@ class AdminUserNavigationController extends Controller
 
     public function create_quick_user_save(Request $request)
     {
-        $per = $request->sel_per;
 
-        if ($per == 1)
-        {
-            $save_sub_admin = new sub_administrator();
-            $save_sub_admin->user_name = $request->user_name;
-            $save_sub_admin->password = encrypt($request->password);
-            $save_sub_admin->save();
-            return back()->with('success','Quick User Created Successfully');
-        }
+        $qp_user = new User();
+        $qp_user->user_name = $request->user_name;
+        $qp_user->password = encrypt($request->password);
+        $qp_user->exp_date = Carbon::now()->addMonth(1);
+        $qp_user->save();
+        return redirect(route('admin.freeuser'))->with('success','Quick User Created Successfully');
 
-        if ($per == 2)
-        {
-            $save_resel = new Reseller();
-            $save_resel->user_name = $request->user_name;
-            $save_resel->password = encrypt($request->password);
-            $save_resel->save();
-            return back()->with('success','Quick User Created Successfully');
-        }
-
-        if ($per == 3)
-        {
-            $save_sub_resel = new Subreseller();
-            $save_sub_resel->user_name = $request->user_name;
-            $save_sub_resel->password = encrypt($request->password);
-            $save_sub_resel->save();
-            return back()->with('success','Quick User Created Successfully');
-
-        }
+//        $per = $request->sel_per;
+//
+//        if ($per == 1)
+//        {
+//            $save_sub_admin = new sub_administrator();
+//            $save_sub_admin->user_name = $request->user_name;
+//            $save_sub_admin->password = encrypt($request->password);
+//            $save_sub_admin->save();
+//            return back()->with('success','Quick User Created Successfully');
+//        }
+//
+//        if ($per == 2)
+//        {
+//            $save_resel = new Reseller();
+//            $save_resel->user_name = $request->user_name;
+//            $save_resel->password = encrypt($request->password);
+//            $save_resel->save();
+//            return back()->with('success','Quick User Created Successfully');
+//        }
+//
+//        if ($per == 3)
+//        {
+//            $save_sub_resel = new Subreseller();
+//            $save_sub_resel->user_name = $request->user_name;
+//            $save_sub_resel->password = encrypt($request->password);
+//            $save_sub_resel->save();
+//            return back()->with('success','Quick User Created Successfully');
+//
+//        }
     }
 
 
@@ -784,6 +792,14 @@ class AdminUserNavigationController extends Controller
             $subreseller_t->save();
             return redirect(route('admin.reseller.time.duration'))->with('success','Time Added Successfully');
         }
+    }
+
+    public function all_user()
+    {
+        $sub_ad = sub_administrator::paginate(15);
+        $reseller = Reseller::paginate(15);
+        $sub_reseller = Subreseller::paginate(15);
+        return view('admin.usernavigation.all-user',compact('sub_ad','reseller','sub_reseller'));
     }
 
 }

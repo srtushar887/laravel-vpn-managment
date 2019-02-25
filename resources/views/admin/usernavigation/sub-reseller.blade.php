@@ -28,7 +28,7 @@
                     <th>Password</th>
                     <th>Upline</th>
                     <th>Credit</th>
-                    <th>Exp Date</th>
+                    <th>Created Date</th>
                     <th>User Status</th>
                     <th>Action</th>
 
@@ -42,7 +42,7 @@
                         <td>{{ decrypt($subresl->password)}}</td>
                         <td>{{$subresl->upline_id}}</td>
                         <td>{{$subresl->cradit}}</td>
-                        <td>{{$subresl->exp_date}}</td>
+                        <td>{{$subresl->created_at}}</td>
                         @if($subresl->is_block == 0)
                             <td><span class="label label-info">Active</span></td>
                         @else

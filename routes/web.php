@@ -22,7 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->group(function (){
    Route::get('/login','Auth\AdminLoginController@showloginfrom')->name('admin.login');
    Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
-
    Route::get('/logout','Auth\AdminLoginController@logout')->name('admin.logout');
 });
 
@@ -116,6 +115,8 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::get('add-sub-reseller-time-duration-select/{id}','AdminUserNavigationController@subreseller_time_duration_select')->name('subreseller.timedur');
        Route::post('add-sub-reseller-time-duration-select','AdminUserNavigationController@subreseller_time_duration_select_save')->name('subreseller.time.save');
 
+       //all user
+       Route::get('all-user','AdminUserNavigationController@all_user')->name('admin.all.user');
 
 
    });
