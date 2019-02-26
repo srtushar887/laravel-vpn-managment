@@ -26,7 +26,7 @@
                     <th>Name</th>
                     <th>User Name</th>
                     <th>Password</th>
-                    <th>Upline</th>
+                    <th>Upline Name</th>
                     <th>Credit</th>
                     <th>Created date</th>
                     <th>User Status</th>
@@ -40,7 +40,7 @@
                         <td>{{$resl->name}}</td>
                         <td>{{$resl->user_name}}</td>
                         <td>{{ decrypt($resl->password)}}</td>
-                        <td>{{$resl->upline_id}}</td>
+                        <td>{{$resl->admin->name}}</td>
                         <td>{{$resl->cradit}}</td>
                         <td>{{$resl->created_at}}</td>
                         @if($resl->is_block == 0)

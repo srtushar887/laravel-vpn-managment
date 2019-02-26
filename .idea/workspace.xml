@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e12ba10a-28d0-4d39-b0c8-204c4300533f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminUserNavigationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminUserNavigationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Reseller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reseller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Subreseller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Subreseller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/sub_administrator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/sub_administrator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/subadministratror/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/subadministratror/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/usernavigation/create-quick-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/usernavigation/create-quick-user.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/usernavigation/free-user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/usernavigation/free-user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/usernavigation/reseller-time-duration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/usernavigation/reseller-time-duration.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/usernavigation/reseller.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/usernavigation/reseller.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/usernavigation/sub-admin-time-duration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/usernavigation/sub-admin-time-duration.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/usernavigation/sub-reseller.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/usernavigation/sub-reseller.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/usernavigation/subreseller-time-duration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/usernavigation/subreseller-time-duration.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -24,47 +32,48 @@
     <session id="-691843176">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="19" />
+          <entry key="project.closed" value="21" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.3" value="3" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.38" value="1" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.40" value="1" />
-          <entry key="project.open.time.41" value="2" />
+          <entry key="project.open.time.41" value="3" />
           <entry key="project.open.time.46" value="2" />
           <entry key="project.open.time.47" value="2" />
           <entry key="project.open.time.55" value="1" />
           <entry key="project.open.time.58" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="env" value="1" />
           <entry key="gitignore" value="1" />
-          <entry key="php" value="139" />
+          <entry key="php" value="164" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Blade" value="110" />
-          <entry key="PHP" value="29" />
+          <entry key="Blade" value="127" />
+          <entry key="PHP" value="37" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="7" />
-          <entry key="php" value="13472" />
+          <entry key="php" value="13773" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Blade" value="5640" />
-          <entry key="PHP" value="7832" />
+          <entry key="Blade" value="5791" />
+          <entry key="PHP" value="7982" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
@@ -75,29 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="76" column="94" lean-forward="true" selection-start-line="76" selection-start-column="80" selection-end-line="76" selection-end-column="94" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminUserNavigationController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-479">
-              <caret line="398" column="11" lean-forward="true" selection-start-line="398" selection-start-column="11" selection-end-line="398" selection-end-column="11" />
-              <folding>
-                <element signature="e#40#57#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/create-quick-user.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="38" column="26" lean-forward="true" selection-start-line="30" selection-start-column="20" selection-end-line="38" selection-end-column="26" />
+            <state relative-caret-position="285">
+              <caret line="113" column="148" selection-start-line="113" selection-start-column="117" selection-end-line="113" selection-end-column="148" />
             </state>
           </provider>
         </entry>
@@ -105,8 +93,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="108" column="61" lean-forward="true" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="61" />
+            <state relative-caret-position="66">
+              <caret line="198" column="29" lean-forward="true" selection-start-line="198" selection-start-column="29" selection-end-line="198" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/subadministratror/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="42" column="45" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/reseller.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/sub-reseller.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2089">
+              <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Subreseller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/SubAdministrator.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -127,6 +169,13 @@
       <find>$resl</find>
       <find>$subresl</find>
       <find>create_quick_user</find>
+      <find>sub.administrator.add.credit.bal</find>
+      <find>sub_administrator_add_cradit</find>
+      <find>reseller.add.credit.bal</find>
+      <find>reseller_add_cradit</find>
+      <find>subreseller.add.credit.bal</find>
+      <find>sub_reseller_add_cradit</find>
+      <find>add-sub-reseller-time-duration</find>
     </findStrings>
     <replaceStrings>
       <replace>{{asset('assets/admin/')}}</replace>
@@ -142,10 +191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/config/auth.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_02_14_222409_create_admins_table.php" />
-        <option value="$PROJECT_DIR$/app/Admin.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" />
         <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/error.blade.php" />
@@ -155,8 +200,6 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/message.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_02_16_171711_create_resellers_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_02_16_174332_create_subresellers_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/welcome-new.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/admin-login.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClientNavigationController.php" />
@@ -180,19 +223,25 @@
         <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/select-sub-admin.time.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/select-sub-admin-time.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/select-reseller-time.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/sub-admin-time-duration.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/reseller-time-duration.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/select-subreseller-time-duration.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/subreseller-time-duration.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/subadministratror/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/reseller.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/sub-reseller.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/free-user.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/all-user.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/create-quick-user.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AdminUserNavigationController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/sub-admin-time-duration.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/reseller-time-duration.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/subreseller-time-duration.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
+        <option value="$PROJECT_DIR$/app/sub_administrator.php" />
+        <option value="$PROJECT_DIR$/app/Admin.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/subadministratror/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Reseller.php" />
+        <option value="$PROJECT_DIR$/app/Subreseller.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/reseller.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/usernavigation/sub-reseller.blade.php" />
       </list>
     </option>
   </component>
@@ -448,11 +497,13 @@
       <workItem from="1551028903701" duration="7320000" />
       <workItem from="1551039209198" duration="385000" />
       <workItem from="1551118452372" duration="6966000" />
+      <workItem from="1551138370462" duration="13000" />
+      <workItem from="1551197148821" duration="2639000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63159000" />
+    <option name="totallyTimeSpent" value="65811000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -466,7 +517,7 @@
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1376" height="754" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32902735" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33966565" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -505,34 +556,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="225" column="67" selection-start-line="225" selection-start-column="67" selection-end-line="225" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/error.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -573,20 +596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="21" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
@@ -702,13 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Reseller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -758,38 +760,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/reseller-time-duration.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/sub-admin-time-duration.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="15" column="50" selection-end-line="199" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/select-reseller-time.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="22" column="29" lean-forward="true" selection-end-line="43" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/select-subreseller-time-duration.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="16" column="79" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/subreseller-time-duration.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="53" column="37" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -800,98 +774,139 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/subadministratror/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="39" column="31" selection-end-line="401" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/reseller.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="258" lean-forward="true" selection-start-line="6" selection-end-line="258" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/sub-reseller.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1252">
-          <caret line="267" column="13" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="108" column="61" lean-forward="true" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/all-user.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="209" column="42" selection-start-line="209" selection-start-column="42" selection-end-line="209" selection-end-column="42" />
-          <folding>
-            <element signature="e#3810#3829#0#HTML" expanded="true" />
-            <element signature="e#4205#4212#1#HTML" expanded="true" />
-            <element signature="e#5072#5090#0#HTML" expanded="true" />
-            <element signature="e#5709#5727#0#HTML" expanded="true" />
-            <element signature="e#6339#6357#0#HTML" expanded="true" />
-            <element signature="e#6984#7002#0#HTML" expanded="true" />
-            <element signature="e#7862#7881#0#HTML" expanded="true" />
-            <element signature="e#8257#8264#1#HTML" expanded="true" />
-            <element signature="e#9396#9415#0#HTML" expanded="true" />
-            <element signature="e#9789#9796#1#HTML" expanded="true" />
-            <element signature="e#10926#10945#0#HTML" expanded="true" />
-            <element signature="e#11321#11328#1#HTML" expanded="true" />
-            <element signature="e#12469#12488#0#HTML" expanded="true" />
-            <element signature="e#12872#12879#1#HTML" expanded="true" />
-            <element signature="e#20826#20845#0#HTML" expanded="true" />
-            <element signature="e#21218#21225#1#HTML" expanded="true" />
-            <element signature="e#24874#24893#0#HTML" expanded="true" />
-            <element signature="e#25266#25273#1#HTML" expanded="true" />
-            <element signature="e#26390#26409#0#HTML" expanded="true" />
-            <element signature="e#26781#26788#1#HTML" expanded="true" />
-            <element signature="e#27903#27922#0#HTML" expanded="true" />
-            <element signature="e#28296#28303#1#HTML" expanded="true" />
-            <element signature="e#29429#29448#0#HTML" expanded="true" />
-            <element signature="e#29823#29830#1#HTML" expanded="true" />
-            <element signature="e#34789#34808#0#HTML" expanded="true" />
-            <element signature="e#35184#35191#1#HTML" expanded="true" />
-            <element signature="e#38862#38881#0#HTML" expanded="true" />
-            <element signature="e#39257#39264#1#HTML" expanded="true" />
-            <element signature="e#40394#40413#0#HTML" expanded="true" />
-            <element signature="e#40788#40795#1#HTML" expanded="true" />
-            <element signature="e#41923#41942#0#HTML" expanded="true" />
-            <element signature="e#42319#42326#1#HTML" expanded="true" />
-            <element signature="e#43463#43482#0#HTML" expanded="true" />
-            <element signature="e#43860#43867#1#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/create-quick-user.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="38" column="26" lean-forward="true" selection-start-line="30" selection-start-column="20" selection-end-line="38" selection-end-column="26" />
+        <state relative-caret-position="528">
+          <caret line="38" column="26" selection-start-line="30" selection-start-column="20" selection-end-line="38" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="76" column="94" lean-forward="true" selection-start-line="76" selection-start-column="80" selection-end-line="76" selection-end-column="94" />
+        <state relative-caret-position="286">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/select-reseller-time.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/sub-admin-time-duration.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/reseller-time-duration.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/subreseller-time-duration.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminUserNavigationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-479">
-          <caret line="398" column="11" lean-forward="true" selection-start-line="398" selection-start-column="11" selection-end-line="398" selection-end-column="11" />
+        <state relative-caret-position="180">
+          <caret line="373" column="34" selection-start-line="373" selection-start-column="34" selection-end-line="373" selection-end-column="34" />
           <folding>
             <element signature="e#40#57#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="113" column="148" selection-start-line="113" selection-start-column="117" selection-end-line="113" selection-end-column="148" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="198" column="29" lean-forward="true" selection-start-line="198" selection-start-column="29" selection-end-line="198" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/SubAdministrator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Reseller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/sub_administrator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/subadministratror/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="42" column="45" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Subreseller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/reseller.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/usernavigation/sub-reseller.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2089">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
         </state>
       </provider>
     </entry>

@@ -13,7 +13,7 @@
         <i class="entypo-plus"></i>
         Reseller
     </a>
-    <a href="{{route('admin.reseller.time.duration')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('admin.subreseller.time.duration')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Sub Reseller
     </a>
@@ -34,7 +34,7 @@
             <table class="table table-bordered responsive">
                 <thead>
                 <tr>
-                    <th>Name</th>
+
                     <th>User Name</th>
                     <th>Password</th>
                     <th>Upline</th>
@@ -48,7 +48,6 @@
                 <tbody>
                 @foreach($time_sub_admin as $alsuba)
                     <tr>
-                        <td>{{$alsuba->name}}</td>
                         <td>{{$alsuba->user_name}}</td>
                         <td>{{ decrypt($alsuba->password)}}</td>
                         <td>{{$alsuba->upline_id}}</td>

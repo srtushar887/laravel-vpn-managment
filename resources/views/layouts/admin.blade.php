@@ -205,6 +205,12 @@
                                     Edit Profile
                                 </a>
                             </li>
+                            <li>
+                                <a href="extra-timeline.html">
+                                    <i class="entypo-user"></i>
+                                    Change Passsword
+                                </a>
+                            </li>
 
 
 

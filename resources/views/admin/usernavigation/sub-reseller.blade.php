@@ -26,7 +26,7 @@
                     <th>Name</th>
                     <th>User Name</th>
                     <th>Password</th>
-                    <th>Upline</th>
+                    <th>Upline Name</th>
                     <th>Credit</th>
                     <th>Created Date</th>
                     <th>User Status</th>
@@ -40,7 +40,11 @@
                         <td>{{$subresl->name}}</td>
                         <td>{{$subresl->user_name}}</td>
                         <td>{{ decrypt($subresl->password)}}</td>
-                        <td>{{$subresl->upline_id}}</td>
+                        @if(!empty($subresl->upline_id))
+                        <td>{{$subresl->admin->name}}</td>
+                        @else
+                            <td>Not Set Yet</td>
+                        @endif
                         <td>{{$subresl->cradit}}</td>
                         <td>{{$subresl->created_at}}</td>
                         @if($subresl->is_block == 0)

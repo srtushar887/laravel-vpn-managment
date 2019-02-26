@@ -111,7 +111,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::get('add-reseller-time-duration','AdminUserNavigationController@reseller_time_duration')->name('admin.reseller.time.duration');
        Route::get('add-reseller-time-duration-select/{id}','AdminUserNavigationController@reseller_time_duration_select')->name('reseller.timedur');
        Route::post('add-reseller-time-duration-select','AdminUserNavigationController@reseller_time_duration_select_save')->name('reseller.time.save');
-       Route::get('add-sub-reseller-time-duration','AdminUserNavigationController@subreseller_time_duration')->name('admin.reseller.time.duration');
+       Route::get('add-sub-reseller-time-duration','AdminUserNavigationController@subreseller_time_duration')->name('admin.subreseller.time.duration');
        Route::get('add-sub-reseller-time-duration-select/{id}','AdminUserNavigationController@subreseller_time_duration_select')->name('subreseller.timedur');
        Route::post('add-sub-reseller-time-duration-select','AdminUserNavigationController@subreseller_time_duration_select_save')->name('subreseller.time.save');
 

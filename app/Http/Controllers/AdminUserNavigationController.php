@@ -132,7 +132,7 @@ class AdminUserNavigationController extends Controller
     public function sub_administrator_add_cradit(Request $request)
     {
         $card = sub_administrator::where('id',$request->add_crdt)->first();
-        $card->cradit = $request->cradit;
+        $card->cradit = $card->cradit + $request->cradit;
         $card->exp_date = Carbon::now()->addMonth($request->cradit);
         $card->save();
         return back()->with('success','Cradit Added Successfully');
@@ -250,7 +250,7 @@ class AdminUserNavigationController extends Controller
     public function reseller_add_cradit(Request $request)
     {
         $r_cr_add = Reseller::where('id',$request->add_crdt)->first();
-        $r_cr_add->cradit = $request->cradit;
+        $r_cr_add->cradit = $r_cr_add->cradit + $request->cradit;
         $r_cr_add->exp_date = Carbon::now()->addMonth($request->cradit);
         $r_cr_add->save();
         return back()->with('success','Cradit Added Successfully');
@@ -371,7 +371,7 @@ class AdminUserNavigationController extends Controller
     public function sub_reseller_add_cradit(Request $request)
     {
         $sub_res_add_cr = Subreseller::where('id',$request->add_crdt)->first();
-        $sub_res_add_cr->cradit = $request->cradit;
+        $sub_res_add_cr->cradit = $sub_res_add_cr->cradit + $request->cradit;
         $sub_res_add_cr->exp_date = Carbon::now()->addMonth($request->cradit);
         $sub_res_add_cr->save();
         return back()->with('success','Cradit Added Successfully');
