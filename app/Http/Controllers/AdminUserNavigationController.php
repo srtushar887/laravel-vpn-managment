@@ -139,6 +139,34 @@ class AdminUserNavigationController extends Controller
 
     }
 
+    public function sub_administrator_search(Request $request)
+    {
+        $search = $request->search;
+        $sub_ad = sub_administrator::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.subadministratror.search-result',compact('sub_ad'));
+    }
+
+    public function reseller_search(Request $request)
+    {
+        $search = $request->search;
+        $reseller_sr = Reseller::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.usernavigation.reseller-search-result',compact('reseller_sr'));
+    }
+
+    public function sub_reseller_search(Request $request)
+    {
+        $search = $request->search;
+        $reseller_sr = Subreseller::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.usernavigation.subreseller-search-result',compact('reseller_sr'));
+    }
+
+    public function free_user_search(Request $request)
+    {
+        $search = $request->search;
+        $free_user_sr = Subreseller::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.usernavigation.freeuser-search-result',compact('free_user_sr'));
+    }
+
 
     public function reseller()
     {
@@ -390,6 +418,7 @@ class AdminUserNavigationController extends Controller
         $qp_user->user_name = $request->user_name;
         $qp_user->password = encrypt($request->password);
         $qp_user->exp_date = Carbon::now()->addMonth(1);
+        $qp_user->upline_id = Auth::user()->id;
         $qp_user->save();
         return redirect(route('admin.freeuser'))->with('success','Quick User Created Successfully');
 
@@ -584,6 +613,7 @@ class AdminUserNavigationController extends Controller
             $user = new User();
             $user->user_name = rand(000000,999999);
             $user->password = encrypt(rand(000000,999999));
+            $user->upline_id = Auth::user()->id;
             $user->save();
 
         }

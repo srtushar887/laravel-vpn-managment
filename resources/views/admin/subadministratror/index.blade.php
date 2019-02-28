@@ -9,10 +9,14 @@
     <i class="entypo-plus"></i>
     Create New
     </a>
-    <a href="javascript: fnClickAddRow();" class="btn btn-primary pull-right">
-        <i class="entypo-plus"></i>
-       Search
-    </a>
+    <div id="table-1_filter" class="dataTables_filter pull-right">
+        <form action="{{route('admin.subadmin.search')}}" method="post">
+            @csrf
+        <label>Search:
+            <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
+        </label>
+        </form>
+    </div>
 
 
     <br />

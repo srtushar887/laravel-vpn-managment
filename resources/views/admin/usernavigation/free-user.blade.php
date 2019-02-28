@@ -9,10 +9,14 @@
         <i class="entypo-plus"></i>
         Create New
     </a>
-    <a href="javascript: fnClickAddRow();" class="btn btn-primary pull-right">
-        <i class="entypo-plus"></i>
-        Search
-    </a>
+    <div id="table-1_filter" class="dataTables_filter pull-right">
+        <form action="{{route('admin.freeuser.search')}}" method="post">
+            @csrf
+            <label>Search:
+                <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
+            </label>
+        </form>
+    </div>
 
 
     <br />
@@ -38,7 +42,11 @@
                     <tr>
                         <td>{{$fuser->user_name}}</td>
                         <td>{{ decrypt($fuser->password)}}</td>
-                        <td>{{$fuser->upline_id}}</td>
+                        @if(!empty($fuser->upline_id))
+                        <td>{{$fuser->admin->name}}</td>
+                        @else
+                            <td>Not Set Yet</td>
+                        @endif
                         <td>{{$fuser->cradit}}</td>
                         <td>{{$fuser->exp_date}}</td>
                         @if($fuser->is_block == 0)

@@ -42,6 +42,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('sub-administrator-block','AdminUserNavigationController@sub_administrator_block')->name('admin.subadminis.block');
        Route::post('sub-administrator-unblock','AdminUserNavigationController@sub_administrator_unblock')->name('admin.subadminis.unblock');
        Route::post('sub-administrator-add-cradit','AdminUserNavigationController@sub_administrator_add_cradit')->name('sub.administrator.add.credit.bal');
+       Route::post('sub-administrator-search','AdminUserNavigationController@sub_administrator_search')->name('admin.subadmin.search');
 
 
        //reseller
@@ -56,6 +57,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('reseller-block','AdminUserNavigationController@reseller_block')->name('admin.reseller.block');
        Route::post('reseller-unblock','AdminUserNavigationController@reseller_unblock')->name('admin.reseller.unblock');
        Route::post('reseller-add-cradit','AdminUserNavigationController@reseller_add_cradit')->name('reseller.add.credit.bal');
+       Route::post('reseller-search','AdminUserNavigationController@reseller_search')->name('admin.reseller.search');
 
 
        //sub-reseller
@@ -70,6 +72,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('sub-reseller-block','AdminUserNavigationController@sub_reseller_block')->name('admin.subreseller.block');
        Route::post('sub-reseller-unblock','AdminUserNavigationController@sub_reseller_unblock')->name('admin.subreseller.unblock');
        Route::post('sub-reseller-add-cradit','AdminUserNavigationController@sub_reseller_add_cradit')->name('subreseller.add.credit.bal');
+       Route::post('sub-reseller-search','AdminUserNavigationController@sub_reseller_search')->name('admin.subreseller.search');
 
 
 
@@ -85,6 +88,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('free-user-block','AdminUserNavigationController@free_user_block')->name('admin.free.user.block');
        Route::post('free-user-unblock','AdminUserNavigationController@free_user_unblock')->name('admin.free.user.unblock');
        Route::post('free-user-add-cradit','AdminUserNavigationController@free_user_add_cradit')->name('freeuser.add.credit.bal');
+       Route::post('free-user-search','AdminUserNavigationController@free_user_search')->name('admin.freeuser.search');
 
 
        //create vpn

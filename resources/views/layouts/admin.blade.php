@@ -87,6 +87,7 @@
                         <span class="title">Sub Administrator</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="{{route('admin.reseller')}}" >
                         <i class="entypo-monitor"></i>
@@ -159,6 +160,9 @@
                         @if(request()->path() == 'admin/sub-administrator')
                         <h2>Sub-Administrator</h2>
                             @endif
+                        @if(request()->path() == 'admin/sub-administrator-search')
+                            <h2>Sub-Administrator</h2>
+                        @endif
                         {{--@if(request()->path() == 'admin/create-sub-administrator')--}}
                         {{--<h2>Create Sub-Administrator</h2>--}}
                         {{--@endif--}}

@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($all_reseller as $resl)
+                @foreach($reseller_sr as $resl)
                     <tr>
                         <td>{{$resl->name}}</td>
                         <td>{{$resl->user_name}}</td>
@@ -67,16 +67,16 @@
                                 Change Permision
                             </a>
                             @if($resl->is_block == 0)
-                            <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-block{{$resl->id}}">
-                                <i class="entypo-cancel"></i>
-                                Block
-                            </a>
-                                @else
+                                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-block{{$resl->id}}">
+                                    <i class="entypo-cancel"></i>
+                                    Block
+                                </a>
+                            @else
                                 <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-unblock{{$resl->id}}">
                                     <i class="entypo-cancel"></i>
                                     Unblock
                                 </a>
-                                @endif
+                            @endif
                             <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-subreseller-add-cradit{{$resl->id}}">
                                 <i class="entypo-cancel"></i>
                                 Add Cradit
