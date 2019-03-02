@@ -13,14 +13,18 @@
         <i class="entypo-plus"></i>
         Reseller
     </a>
-    <a href="{{route('craete.reseller')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('admin.credit.subreseller.add')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Sub Reseller
     </a>
-    <a href="javascript: fnClickAddRow();" class="btn btn-primary pull-right" style="margin-left: 10px">
-        <i class="entypo-plus"></i>
-        Search
-    </a>
+    <div id="table-1_filter" class="dataTables_filter pull-right">
+        <form action="{{route('admin.subreseller.cradit.search')}}" method="post">
+            @csrf
+            <label>Search:
+                <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
+            </label>
+        </form>
+    </div>
 
 
     <br />
@@ -34,7 +38,7 @@
             <table class="table table-bordered responsive">
                 <thead>
                 <tr>
-                    <th>Name</th>
+
                     <th>User Name</th>
                     <th>Password</th>
                     <th>Upline</th>
@@ -48,7 +52,7 @@
                 <tbody>
                 @foreach($subresller as $subresl)
                     <tr>
-                        <td>{{$subresl->name}}</td>
+
                         <td>{{$subresl->user_name}}</td>
                         <td>{{ decrypt($subresl->password)}}</td>
                         <td>{{$subresl->upline_id}}</td>

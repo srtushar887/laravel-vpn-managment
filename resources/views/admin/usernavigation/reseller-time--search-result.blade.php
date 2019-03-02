@@ -18,7 +18,7 @@
         Sub Reseller
     </a>
     <div id="table-1_filter" class="dataTables_filter pull-right">
-        <form action="{{route('admin.subreseller.time.search')}}" method="post">
+        <form action="{{route('admin.reseller.time.search')}}" method="post">
             @csrf
             <label>Search:
                 <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
@@ -33,7 +33,7 @@
 
         <div class="col-md-12">
             <div class="panel-heading">
-                <div class="panel-title">Sub Reseller</div>
+                <div class="panel-title">Reseller</div>
             </div>
             <table class="table table-bordered responsive">
                 <thead>
@@ -49,7 +49,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($subreseler as $alsuba)
+                @foreach($reseller_time_sr as $alsuba)
                     <tr>
                         <td>{{$alsuba->user_name}}</td>
                         <td>{{ decrypt($alsuba->password)}}</td>
@@ -63,7 +63,7 @@
                         <td>{{$alsuba->exp_date}}</td>
                         <td>
 
-                            <a href="{{route('subreseller.timedur',$alsuba->id)}}" class="btn btn-default btn-sm btn-icon icon-left" >
+                            <a href="{{route('reseller.timedur',$alsuba->id)}}" class="btn btn-default btn-sm btn-icon icon-left" >
                                 <i class="entypo-cancel"></i>
                                 Add Time Duration
                             </a>

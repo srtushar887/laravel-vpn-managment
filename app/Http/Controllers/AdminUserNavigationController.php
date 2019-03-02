@@ -167,6 +167,48 @@ class AdminUserNavigationController extends Controller
         return view('admin.usernavigation.freeuser-search-result',compact('free_user_sr'));
     }
 
+    public function sub_administrator_time_search(Request $request)
+    {
+        $search = $request->search;
+        $sub_ad_time = sub_administrator::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.subadministratror.time-search-result',compact('sub_ad_time'));
+    }
+
+    public function reseller_time_search(Request $request)
+    {
+        $search = $request->search;
+        $reseller_time_sr = Reseller::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.usernavigation.reseller-time--search-result',compact('reseller_time_sr'));
+    }
+
+    public function sub_reseller_time_search(Request $request)
+    {
+        $search = $request->search;
+        $reseller_time_sr = Subreseller::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.usernavigation.subreseller-time-search-result',compact('reseller_time_sr'));
+    }
+
+    public function sub_administrator_cradit_search(Request $request)
+    {
+        $search = $request->search;
+        $sub_ad_cradit = sub_administrator::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.subadministratror.cradit-search-result',compact('sub_ad_cradit'));
+    }
+
+    public function reseller_cradit_search(Request $request)
+    {
+        $search = $request->search;
+        $reseller_cradit_sr = Reseller::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.usernavigation.reseller-cradit-search-result',compact('reseller_cradit_sr'));
+    }
+
+    public function sub_reseller_cradit_search(Request $request)
+    {
+        $search = $request->search;
+        $subreseller_cradit_sr = Subreseller::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.usernavigation.subreseller-cradit-search-result',compact('subreseller_cradit_sr'));
+    }
+
 
     public function reseller()
     {
@@ -593,7 +635,7 @@ class AdminUserNavigationController extends Controller
     public function free_user_add_cradit(Request $request)
     {
         $free_user_crd_ad = User::where('id',$request->add_crdt)->first();
-        $free_user_crd_ad->cradit = $request->cradit;
+        $free_user_crd_ad->cradit = $free_user_crd_ad->cradit + $request->cradit;
         $free_user_crd_ad->exp_date = Carbon::now()->addMonth($request->cradit);
         $free_user_crd_ad->save();
         return back()->with('success','Cradit Added Successfully');

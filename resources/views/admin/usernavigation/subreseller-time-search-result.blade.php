@@ -49,7 +49,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($subreseler as $alsuba)
+                @foreach($reseller_time_sr as $alsuba)
                     <tr>
                         <td>{{$alsuba->user_name}}</td>
                         <td>{{ decrypt($alsuba->password)}}</td>

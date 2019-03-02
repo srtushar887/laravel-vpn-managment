@@ -5,20 +5,20 @@
 
 
 
-    <a href="{{route('admin.time.duration')}}" class="btn btn-primary pull-left" >
+    <a href="{{route('admin.credit')}}" class="btn btn-primary pull-left" >
         <i class="entypo-plus"></i>
         Sub Administrator
     </a>
-    <a href="{{route('admin.reseller.time.duration')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('admin.credit.reseller')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Reseller
     </a>
-    <a href="{{route('admin.subreseller.time.duration')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('admin.credit.subreseller.add')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Sub Reseller
     </a>
     <div id="table-1_filter" class="dataTables_filter pull-right">
-        <form action="{{route('admin.subreseller.time.search')}}" method="post">
+        <form action="{{route('admin.subreseller.cradit.search')}}" method="post">
             @csrf
             <label>Search:
                 <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
@@ -33,11 +33,12 @@
 
         <div class="col-md-12">
             <div class="panel-heading">
-                <div class="panel-title">Sub Reseller</div>
+                <div class="panel-title">Sub Administrator</div>
             </div>
             <table class="table table-bordered responsive">
                 <thead>
                 <tr>
+
                     <th>User Name</th>
                     <th>Password</th>
                     <th>Upline</th>
@@ -49,23 +50,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($subreseler as $alsuba)
+                @foreach($subreseller_cradit_sr as $subresl)
                     <tr>
-                        <td>{{$alsuba->user_name}}</td>
-                        <td>{{ decrypt($alsuba->password)}}</td>
-                        <td>{{$alsuba->upline_id}}</td>
-                        <td>{{$alsuba->cradit}}</td>
-                        @if($alsuba->is_block == 0)
+
+                        <td>{{$subresl->user_name}}</td>
+                        <td>{{ decrypt($subresl->password)}}</td>
+                        <td>{{$subresl->upline_id}}</td>
+                        <td>{{$subresl->cradit}}</td>
+                        @if($subresl->is_block == 0)
                             <td><span class="label label-info">Active</span></td>
                         @else
                             <td><span class="label label-danger">Block</span></td>
                         @endif
-                        <td>{{$alsuba->exp_date}}</td>
+                        <td>{{$subresl->exp_date}}</td>
                         <td>
 
-                            <a href="{{route('subreseller.timedur',$alsuba->id)}}" class="btn btn-default btn-sm btn-icon icon-left" >
+                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-administrator-add-credit{{$subresl->id}}">
                                 <i class="entypo-cancel"></i>
-                                Add Time Duration
+                                Add Credit
                             </a>
 
 
@@ -77,9 +79,9 @@
 
 
 
-                    <div class="modal fade custom-width modalfate" id="sub-administrator-add-credit{{$alsuba->id}}">
+                    <div class="modal fade custom-width modalfate" id="sub-administrator-add-credit{{$subresl->id}}">
                         <div class="modal-dialog" style="width: 60%;">
-                            <form action="{{route('admin.subadmintator.credit.add')}}" method="post">
+                            <form action="{{route('admin.subreseller.credit.add')}}" method="post">
                                 @csrf
                                 <div class="modal-content">
 
@@ -89,7 +91,7 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <input type="hidden" name="add_credit" value="{{$alsuba->id}}">
+                                        <input type="hidden" name="add_credit" value="{{$subresl->id}}">
                                         <input type="number" class="form-control" name="cradit">
                                     </div>
 

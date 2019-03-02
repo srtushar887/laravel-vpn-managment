@@ -17,10 +17,14 @@
         <i class="entypo-plus"></i>
         Sub Reseller
     </a>
-    <a href="javascript: fnClickAddRow();" class="btn btn-primary pull-right" style="margin-left: 10px">
-        <i class="entypo-plus"></i>
-        Search
-    </a>
+    <div id="table-1_filter" class="dataTables_filter pull-right">
+        <form action="{{route('admin.reseller.time.search')}}" method="post">
+            @csrf
+            <label>Search:
+                <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
+            </label>
+        </form>
+    </div>
 
 
     <br />

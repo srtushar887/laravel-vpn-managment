@@ -17,10 +17,14 @@
         <i class="entypo-plus"></i>
         Sub Reseller
     </a>
-    <a href="javascript: fnClickAddRow();" class="btn btn-primary pull-right" style="margin-left: 10px">
-        <i class="entypo-plus"></i>
-        Search
-    </a>
+    <div id="table-1_filter" class="dataTables_filter pull-right">
+        <form action="{{route('admin.sibadmin.cradit.search')}}" method="post">
+            @csrf
+            <label>Search:
+                <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
+            </label>
+        </form>
+    </div>
 
 
     <br />
@@ -34,7 +38,7 @@
             <table class="table table-bordered responsive">
                 <thead>
                 <tr>
-                    <th>Name</th>
+
                     <th>User Name</th>
                     <th>Password</th>
                     <th>Upline</th>
@@ -48,7 +52,7 @@
                 <tbody>
                 @foreach($all_sub_adm as $alsuba)
                     <tr>
-                        <td>{{$alsuba->name}}</td>
+
                         <td>{{$alsuba->user_name}}</td>
                         <td>{{ decrypt($alsuba->password)}}</td>
                         <td>{{$alsuba->upline_id}}</td>

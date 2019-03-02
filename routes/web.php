@@ -43,6 +43,8 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('sub-administrator-unblock','AdminUserNavigationController@sub_administrator_unblock')->name('admin.subadminis.unblock');
        Route::post('sub-administrator-add-cradit','AdminUserNavigationController@sub_administrator_add_cradit')->name('sub.administrator.add.credit.bal');
        Route::post('sub-administrator-search','AdminUserNavigationController@sub_administrator_search')->name('admin.subadmin.search');
+       Route::post('sub-administrator-time-search','AdminUserNavigationController@sub_administrator_time_search')->name('admin.subadmin.time.search');
+       Route::post('sub-administrator-cradit-search','AdminUserNavigationController@sub_administrator_cradit_search')->name('admin.sibadmin.cradit.search');
 
 
        //reseller
@@ -58,6 +60,8 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('reseller-unblock','AdminUserNavigationController@reseller_unblock')->name('admin.reseller.unblock');
        Route::post('reseller-add-cradit','AdminUserNavigationController@reseller_add_cradit')->name('reseller.add.credit.bal');
        Route::post('reseller-search','AdminUserNavigationController@reseller_search')->name('admin.reseller.search');
+       Route::post('reseller-time-search','AdminUserNavigationController@reseller_time_search')->name('admin.reseller.time.search');
+       Route::post('reseller-cradit-search','AdminUserNavigationController@reseller_cradit_search')->name('admin.reseller.cradit.search');
 
 
        //sub-reseller
@@ -73,6 +77,8 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::post('sub-reseller-unblock','AdminUserNavigationController@sub_reseller_unblock')->name('admin.subreseller.unblock');
        Route::post('sub-reseller-add-cradit','AdminUserNavigationController@sub_reseller_add_cradit')->name('subreseller.add.credit.bal');
        Route::post('sub-reseller-search','AdminUserNavigationController@sub_reseller_search')->name('admin.subreseller.search');
+       Route::post('sub-reseller-time-search','AdminUserNavigationController@sub_reseller_time_search')->name('admin.subreseller.time.search');
+       Route::post('sub-reseller-cradit-search','AdminUserNavigationController@sub_reseller_cradit_search')->name('admin.subreseller.cradit.search');
 
 
 

@@ -5,20 +5,20 @@
 
 
 
-    <a href="{{route('admin.time.duration')}}" class="btn btn-primary pull-left" >
+    <a href="{{route('admin.credit')}}" class="btn btn-primary pull-left" >
         <i class="entypo-plus"></i>
         Sub Administrator
     </a>
-    <a href="{{route('admin.reseller.time.duration')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('admin.credit.reseller')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Reseller
     </a>
-    <a href="{{route('admin.subreseller.time.duration')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
+    <a href="{{route('admin.credit.subreseller.add')}}" class="btn btn-primary pull-left" style="margin-left: 10px">
         <i class="entypo-plus"></i>
         Sub Reseller
     </a>
     <div id="table-1_filter" class="dataTables_filter pull-right">
-        <form action="{{route('admin.subreseller.time.search')}}" method="post">
+        <form action="{{route('admin.sibadmin.cradit.search')}}" method="post">
             @csrf
             <label>Search:
                 <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
@@ -33,11 +33,12 @@
 
         <div class="col-md-12">
             <div class="panel-heading">
-                <div class="panel-title">Sub Reseller</div>
+                <div class="panel-title">Sub Administrator</div>
             </div>
             <table class="table table-bordered responsive">
                 <thead>
                 <tr>
+                    <th>Name</th>
                     <th>User Name</th>
                     <th>Password</th>
                     <th>Upline</th>
@@ -49,8 +50,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($subreseler as $alsuba)
+                @foreach($sub_ad_cradit as $alsuba)
                     <tr>
+                        <td>{{$alsuba->name}}</td>
                         <td>{{$alsuba->user_name}}</td>
                         <td>{{ decrypt($alsuba->password)}}</td>
                         <td>{{$alsuba->upline_id}}</td>
@@ -63,9 +65,9 @@
                         <td>{{$alsuba->exp_date}}</td>
                         <td>
 
-                            <a href="{{route('subreseller.timedur',$alsuba->id)}}" class="btn btn-default btn-sm btn-icon icon-left" >
+                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#sub-administrator-add-credit{{$alsuba->id}}">
                                 <i class="entypo-cancel"></i>
-                                Add Time Duration
+                                Add Credit
                             </a>
 
 
