@@ -68,6 +68,28 @@ return [
             'provider' => 'administrators',
         ],
 
+        'reseller' => [
+            'driver' => 'session',
+            'provider' => 'resellers',
+        ],
+
+        //this is for admin api
+        'reseller-api' => [
+            'driver' => 'token',
+            'provider' => 'resellers',
+        ],
+
+        'subreseller' => [
+            'driver' => 'session',
+            'provider' => 'subresellers',
+        ],
+
+        //this is for admin api
+        'subreseller-api' => [
+            'driver' => 'token',
+            'provider' => 'subresellers',
+        ],
+
     ],
 
     /*
@@ -101,6 +123,16 @@ return [
         'administrators' => [
             'driver' => 'eloquent',
             'model' => App\sub_administrator::class,
+        ],
+
+        'resellers' => [
+            'driver' => 'eloquent',
+            'model' => App\Reseller::class,
+        ],
+
+        'subresellers' => [
+            'driver' => 'eloquent',
+            'model' => App\Subreseller::class,
         ],
 
         // 'users' => [
@@ -139,6 +171,18 @@ return [
 
         'administrators' => [
             'provider' => 'administrators',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
+
+        'resellers' => [
+            'provider' => 'resellers',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
+
+        'subresellers' => [
+            'provider' => 'subresellers',
             'table' => 'password_resets',
             'expire' => 15,
         ],

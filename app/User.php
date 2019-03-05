@@ -38,4 +38,14 @@ class User extends Authenticatable
         return $this->hasOne(sub_administrator::class,'id','administrator_id');
     }
 
+    public function reseller()
+    {
+        return $this->hasOne(Reseller::class,'id','reseller_id');
+    }
+
+    public function sureseller()
+    {
+        return $this->hasOne(Subreseller::class,'id','subreseller_id');
+    }
+
 }

@@ -190,4 +190,78 @@ Route::group(['middleware'=>['auth:administrator']],function (){
 });
 
 
+Route::prefix('reseller')->group(function (){
+    Route::get('/login','Auth\ResellerLoginController@showloginfrom')->name('reseller.login');
+    Route::post('/login','Auth\ResellerLoginController@login')->name('reseller.login.submit');
+
+    Route::get('/logout','Auth\ResellerLoginController@logout')->name('reseller.logout');
+});
+
+Route::group(['middleware'=>['auth:reseller']],function (){
+    Route::prefix('reseller')->group(function (){
+
+        Route::get('/','ResellerController@index')->name('reseller.dashboard');
+
+        //sub reseller
+        Route::get('/reseller-sub-reseller','ResellerDataController@reseller')->name('reseller.sub.reseller');
+        Route::get('/reseller-sub-reseller-create','ResellerDataController@reseller_create')->name('reseller.create.subreseller');
+        Route::post('/reseller-sub-reseller-create','ResellerDataController@reseller_save')->name('reseller.subreseller.create');
+        Route::get('/reseller-sub-reseller-edit/{id}','ResellerDataController@reseller_edit')->name('reseller.sub.reseller.edit');
+        Route::post('/reseller-sub-reseller-edit','ResellerDataController@reseller_update')->name('reseller.subreseller.update');
+        Route::post('/reseller-sub-reseller-delete','ResellerDataController@reseller_delete')->name('reseller.subreseller.delete');
+        Route::post('/reseller-sub-reseller-block','ResellerDataController@reseller_block')->name('reseller.subreseller.block');
+        Route::post('/reseller-sub-reseller-unblock','ResellerDataController@reseller_unblock')->name('reseller.subreseller.unblock');
+        Route::post('/reseller-sub-reseller-cradit','ResellerDataController@reseller_cradit')->name('reseller.subreseller.add.credit.bal');
+
+
+        //free user
+        Route::get('/reseller-free-user','ResellerDataController@free_user')->name('reseller.freeuser');
+        Route::get('/reseller-free-create','ResellerDataController@free_user_create')->name('reseller.create.free.user');
+        Route::post('/reseller-free-create','ResellerDataController@free_user_save')->name('reseller.free.user.store');
+        Route::get('/reseller-free-edit/{id}','ResellerDataController@free_user_edit')->name('reseller.free.user.edit');
+        Route::post('/reseller-free-edit','ResellerDataController@free_user_update')->name('reseller.free.user.update');
+        Route::post('/reseller-free-delete','ResellerDataController@free_user_delete')->name('reseller.free.user.delete');
+        Route::post('/reseller-free-block','ResellerDataController@free_user_block')->name('reseller.free.user.block');
+        Route::post('/reseller-free-unblock','ResellerDataController@free_user_unblock')->name('reseller.free.user.unblock');
+        Route::post('/reseller-free-cradit','ResellerDataController@free_user_cradit')->name('reseller.freeuser.add.credit.bal');
+        Route::get('/reseller-quick-user','ResellerDataController@quick_user')->name('reseller.create.quick.user');
+        Route::post('/reseller-quick-user','ResellerDataController@quick_user_save')->name('reseller.quieck.user.save');
+
+
+    });
+});
+
+
+Route::prefix('subreseller')->group(function (){
+    Route::get('/login','Auth\SubresellerLoginController@showloginfrom')->name('subreseller.login');
+    Route::post('/login','Auth\SubresellerLoginController@login')->name('subreseller.login.submit');
+
+    Route::get('/logout','Auth\SubresellerLoginController@logout')->name('subreseller.logout');
+});
+
+Route::group(['middleware'=>['auth:subreseller']],function (){
+    Route::prefix('subreseller')->group(function (){
+
+        Route::get('/','SuresellerController@index')->name('subreseller.dashboard');
+
+        //free user
+        Route::get('/subreseller-vpn-user','SuresellerController@vpn_user')->name('subreseller.freeuser');
+        Route::get('/subreseller-vpn-user-create','SuresellerController@vpn_user_create')->name('subreseller.create.free.user');
+        Route::post('/subreseller-vpn-user-create','SuresellerController@vpn_user_save')->name('subreseller.free.user.store');
+        Route::get('/subreseller-vpn-user-edit/{id}','SuresellerController@vpn_user_edit')->name('subreseller.free.user.edit');
+        Route::post('/subreseller-vpn-user-edit','SuresellerController@vpn_user_update')->name('subreseller.free.user.update');
+        Route::post('/subreseller-vpn-user-delete','SuresellerController@vpn_user_delete')->name('subreseller.free.user.delete');
+        Route::post('/subreseller-vpn-user-block','SuresellerController@vpn_user_block')->name('subreseller.free.user.block');
+        Route::post('/subreseller-vpn-user-unblock','SuresellerController@vpn_user_unblock')->name('subreseller.free.user.unblock');
+        Route::post('/subreseller-vpn-user-cradit','SuresellerController@vpn_user_cradit')->name('subreseller.freeuser.add.credit.bal');
+
+        //quick user
+        Route::get('/subreseller-quick-user','SuresellerController@quick_user')->name('subreseller.create.quick.user');
+        Route::post('/subreseller-quick-user','SuresellerController@quick_user_save')->name('subreseller.quieck.user.save');
+
+    });
+});
+
+
+
 
