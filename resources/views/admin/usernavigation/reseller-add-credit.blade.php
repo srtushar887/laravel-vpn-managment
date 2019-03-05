@@ -55,7 +55,7 @@
 
                         <td>{{$reselc->user_name}}</td>
                         <td>{{ decrypt($reselc->password)}}</td>
-                        <td>{{$reselc->upline_id}}</td>
+                        <td>{{$reselc->admin->name}}</td>
                         <td>{{$reselc->cradit}}</td>
                         @if($reselc->is_block == 0)
                             <td><span class="label label-info">Active</span></td>

@@ -34,7 +34,8 @@ class AdminUserNavigationController extends Controller
         $create_sub_administrator->exp_date = Carbon::now()->addMonth($request->cradit);
         $create_sub_administrator->is_exp = 0;
         $create_sub_administrator->is_active = 0;
-        $create_sub_administrator->password = encrypt($request->password);
+//        $create_sub_administrator->password = encrypt($request->password);
+        $create_sub_administrator->password = Hash::make($request->password);
         $create_sub_administrator->upline_id = Auth::user()->id;
         $create_sub_administrator->save();
         return back()->with('success','Sub-Administratror Saved Successfully');
@@ -673,7 +674,7 @@ class AdminUserNavigationController extends Controller
     public function sub_adminstrator_credit_add(Request $request)
     {
         $sub_admin = sub_administrator::where('id',$request->add_credit)->first();
-        $sub_admin->cradit = $request->cradit;
+        $sub_admin->cradit = $sub_admin->cradit +  $request->cradit;
         $sub_admin->exp_date = Carbon::now()->addMonth($request->cradit);
         $sub_admin->save();
         return back()->with('success','Credit Added Successfully');
@@ -688,7 +689,7 @@ class AdminUserNavigationController extends Controller
     public function reseller_credit_save(Request $request)
     {
         $resel_add_cred = Reseller::where('id',$request->add_credit)->first();
-        $resel_add_cred->cradit = $request->cradit;
+        $resel_add_cred->cradit = $resel_add_cred->cradit + $request->cradit;
         $resel_add_cred->exp_date = Carbon::now()->addMonth($request->cradit);
         $resel_add_cred->save();
         return back()->with('success','Credit Added Successfully');
@@ -703,7 +704,7 @@ class AdminUserNavigationController extends Controller
     public function subreseller_credit_save(Request $request)
     {
         $sub_resl_save = Subreseller::where('id',$request->add_credit)->first();
-        $sub_resl_save->cradit = $request->cradit;
+        $sub_resl_save->cradit =$sub_resl_save->cradit + $request->cradit;
         $sub_resl_save->exp_date = Carbon::now()->addMonth($request->cradit);
         $sub_resl_save->save();
         return back()->with('success','Credit Added Successfully');

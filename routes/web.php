@@ -132,3 +132,62 @@ Route::group(['middleware'=>['auth:admin']],function (){
    });
 });
 
+
+
+Route::prefix('administrator')->group(function (){
+    Route::get('/login','Auth\AdministratorLoginController@showloginfrom')->name('administrator.login');
+    Route::post('/login','Auth\AdministratorLoginController@login')->name('administrator.login.submit');
+
+    Route::get('/logout','Auth\AdministratorLoginController@logout')->name('administrator.logout');
+});
+
+Route::group(['middleware'=>['auth:administrator']],function (){
+    Route::prefix('administrator')->group(function (){
+
+        Route::get('/','AdministratorController@index')->name('administrator.dashboard');
+
+        Route::get('reseller','AdministratorDataController@reseller')->name('administrator.reseller');
+        Route::get('create-reseller','AdministratorDataController@reseller_create')->name('craete.administrator.reseller');
+        Route::post('create-reseller','AdministratorDataController@reseller_save')->name('administrator.reseller.save');
+        Route::get('edit-reseller/{id}','AdministratorDataController@reseller_edit')->name('reseller.edit');
+        Route::post('edit-reseller','AdministratorDataController@reseller_update')->name('administrator.reseller.update');
+        Route::post('delete-reseller','AdministratorDataController@reseller_delete')->name('administrator.reseller.delete');
+        Route::get('change-permission/{id}','AdministratorDataController@reseller_change_permisiion')->name('administrator.reseller.chnageper');
+        Route::post('change-permission','AdministratorDataController@reseller_change_permisiion_save')->name('reseller.chnage.permision.save');
+        Route::post('change-block','AdministratorDataController@reseller_change_block')->name('adminstrator.reseller.block');
+        Route::post('change-unblock','AdministratorDataController@reseller_change_unblock')->name('adminstrator.reseller.unblock');
+        Route::post('reseller-cradit-add','AdministratorDataController@reseller_cradit_add')->name('adminstrator.reseller.add.credit.bal');
+
+        //sub reseller
+        Route::get('sub-reseller','AdministratorDataController@sub_reseller')->name('administrator.sub.reseller');
+        Route::get('create-sub-reseller','AdministratorDataController@sub_reseller_create')->name('create.subreseller');
+        Route::post('create-sub-reseller','AdministratorDataController@sub_reseller_save')->name('administrator.subreseller.create');
+        Route::get('edit-sub-reseller/{id}','AdministratorDataController@sub_reseller_edit')->name('sub.reseller.edit');
+        Route::post('edit-sub-reseller','AdministratorDataController@sub_reseller_update')->name('administrator.subreseller.update');
+        Route::get('sub-reseller-change-permission/{id}','AdministratorDataController@sub_reseller_cahnage_permission')->name('adminstrator.subreseller.chnageper');
+        Route::post('sub-reseller-change-permission','AdministratorDataController@sub_reseller_cahnage_permission_save')->name('administrator.subreseller.chnage.permision.save');
+        Route::post('sub-reseller-delete','AdministratorDataController@sub_reseller_delete')->name('adminstrator.subreseller.delete');
+        Route::post('sub-reseller-block','AdministratorDataController@sub_reseller_block')->name('adminstrator.subreseller.block');
+        Route::post('sub-reseller-unblock','AdministratorDataController@sub_reseller_unblock')->name('adminstrator.subreseller.unblock');
+        Route::post('sub-reseller-add-cradit','AdministratorDataController@sub_reseller_add_cradit')->name('adminstrator.subreseller.add.credit.bal');
+
+        //vpn user
+        Route::get('vpn-user','AdministratorDataController@vpn_user')->name('administrator.freeuser');
+        Route::get('vpn-user-create','AdministratorDataController@vpn_user_craete')->name('adminstrator.create.free.user');
+        Route::post('vpn-user-create','AdministratorDataController@vpn_user_store')->name('adminstrator.free.user.store');
+        Route::get('vpn-user-edit/{id}','AdministratorDataController@vpn_user_edit')->name('adminstrator.free.user.edit');
+        Route::post('vpn-user-edit','AdministratorDataController@vpn_user_update')->name('adminstrator.free.user.update');
+        Route::post('vpn-user-delete','AdministratorDataController@vpn_user_delete')->name('administrator.free.user.delete');
+        Route::post('vpn-user-block','AdministratorDataController@vpn_user_block')->name('administrator.free.user.block');
+        Route::post('vpn-user-unblock','AdministratorDataController@vpn_user_unblock')->name('administrator.free.user.unblock');
+        Route::post('vpn-user-cradit','AdministratorDataController@vpn_user_cradit')->name('administrator.freeuser.add.credit.bal');
+
+        //quick user
+        Route::get('quick-user','AdministratorDataController@quick_user')->name('administrator.create.quick.user');
+        Route::post('quick-user','AdministratorDataController@quick_user_save')->name('administrator.quieck.user.save');
+
+    });
+});
+
+
+

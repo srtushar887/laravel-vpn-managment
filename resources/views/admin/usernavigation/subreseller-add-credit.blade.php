@@ -55,7 +55,7 @@
 
                         <td>{{$subresl->user_name}}</td>
                         <td>{{ decrypt($subresl->password)}}</td>
-                        <td>{{$subresl->upline_id}}</td>
+                        <td>{{$subresl->admin->name}}</td>
                         <td>{{$subresl->cradit}}</td>
                         @if($subresl->is_block == 0)
                             <td><span class="label label-info">Active</span></td>

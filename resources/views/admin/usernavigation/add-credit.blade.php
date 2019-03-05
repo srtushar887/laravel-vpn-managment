@@ -55,7 +55,7 @@
 
                         <td>{{$alsuba->user_name}}</td>
                         <td>{{ decrypt($alsuba->password)}}</td>
-                        <td>{{$alsuba->upline_id}}</td>
+                        <td>{{$alsuba->admin->name}}</td>
                         <td>{{$alsuba->cradit}}</td>
                         @if($alsuba->is_block == 0)
                             <td><span class="label label-info">Active</span></td>

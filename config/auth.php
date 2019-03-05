@@ -57,6 +57,17 @@ return [
             'provider' => 'admins',
         ],
 
+        'administrator' => [
+            'driver' => 'session',
+            'provider' => 'administrators',
+        ],
+
+        //this is for admin api
+        'administrator-api' => [
+            'driver' => 'token',
+            'provider' => 'administrators',
+        ],
+
     ],
 
     /*
@@ -85,6 +96,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'administrators' => [
+            'driver' => 'eloquent',
+            'model' => App\sub_administrator::class,
         ],
 
         // 'users' => [
@@ -117,6 +133,12 @@ return [
 
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
+
+        'administrators' => [
+            'provider' => 'administrators',
             'table' => 'password_resets',
             'expire' => 15,
         ],
