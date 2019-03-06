@@ -9,8 +9,8 @@
         Create New
     </a>
     <div id="table-1_filter" class="dataTables_filter pull-right">
-        <form action="{{route('admin.subreseller.search')}}" method="post">
-            @csrf
+        <form action="{{route('subresellersearch')}}" method="post">
+
             <label>Search:
                 <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
             </label>
@@ -38,6 +38,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(count($all_sub_reseller) > 0)
                 @foreach($all_sub_reseller as $subresl)
                     <tr>
                         <td>{{$subresl->name}}</td>
@@ -203,6 +204,9 @@
 
 
                 @endforeach
+                @else
+                    <td colspan="8" class="text-center">No Data Availabe now</td>
+                @endif
 
                 </tbody>
             </table>

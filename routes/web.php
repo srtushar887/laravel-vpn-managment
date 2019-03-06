@@ -115,7 +115,9 @@ Route::group(['middleware'=>['auth:admin']],function (){
 
 
        //time duration
-       Route::get('add-sub-administration-time-duration','AdminUserNavigationController@sub_ad_time_duration')->name('admin.time.duration');
+       Route::get('add-time','AdminUserNavigationController@sub_ad_time_duration')->name('admin.time.duration');
+       Route::post('add-time','AdminUserNavigationController@fre_ad_time')->name('freeuser.add.time');
+       Route::post('add-time-search','AdminUserNavigationController@fre_ad_time_search')->name('admin.freeuser.time.search');
        Route::get('add-sub-administration-time-duration-select/{id}','AdminUserNavigationController@sub_ad_time_duration_select')->name('sub.admin.timedur');
        Route::post('add-sub-administration-time-duration-select','AdminUserNavigationController@sub_ad_time_duration_select_save')->name('subadmin.time.save');
        Route::get('add-reseller-time-duration','AdminUserNavigationController@reseller_time_duration')->name('admin.reseller.time.duration');
@@ -147,8 +149,8 @@ Route::group(['middleware'=>['auth:administrator']],function (){
         Route::get('/','AdministratorController@index')->name('administrator.dashboard');
 
         Route::get('reseller','AdministratorDataController@reseller')->name('administrator.reseller');
-        Route::get('create-reseller','AdministratorDataController@reseller_create')->name('craete.administrator.reseller');
-        Route::post('create-reseller','AdministratorDataController@reseller_save')->name('administrator.reseller.save');
+        Route::get('administrator-create-reseller','AdministratorDataController@reseller_create')->name('craete.administrator.reseller');
+        Route::post('administrator-create-reseller','AdministratorDataController@reseller_save')->name('administrator.reseller.save');
         Route::get('edit-reseller/{id}','AdministratorDataController@reseller_edit')->name('reseller.edit');
         Route::post('edit-reseller','AdministratorDataController@reseller_update')->name('administrator.reseller.update');
         Route::post('delete-reseller','AdministratorDataController@reseller_delete')->name('administrator.reseller.delete');
@@ -157,6 +159,7 @@ Route::group(['middleware'=>['auth:administrator']],function (){
         Route::post('change-block','AdministratorDataController@reseller_change_block')->name('adminstrator.reseller.block');
         Route::post('change-unblock','AdministratorDataController@reseller_change_unblock')->name('adminstrator.reseller.unblock');
         Route::post('reseller-cradit-add','AdministratorDataController@reseller_cradit_add')->name('adminstrator.reseller.add.credit.bal');
+        Route::post('reseller-search','AdministratorDataController@reseller_search')->name('administrator.reseller.serach');
 
         //sub reseller
         Route::get('sub-reseller','AdministratorDataController@sub_reseller')->name('administrator.sub.reseller');
@@ -170,6 +173,7 @@ Route::group(['middleware'=>['auth:administrator']],function (){
         Route::post('sub-reseller-block','AdministratorDataController@sub_reseller_block')->name('adminstrator.subreseller.block');
         Route::post('sub-reseller-unblock','AdministratorDataController@sub_reseller_unblock')->name('adminstrator.subreseller.unblock');
         Route::post('sub-reseller-add-cradit','AdministratorDataController@sub_reseller_add_cradit')->name('adminstrator.subreseller.add.credit.bal');
+        Route::post('adminstrator-sub-reseller-search','AdministratorDataController@subrelsearch')->name('subresellersearch');
 
         //vpn user
         Route::get('vpn-user','AdministratorDataController@vpn_user')->name('administrator.freeuser');
@@ -181,6 +185,7 @@ Route::group(['middleware'=>['auth:administrator']],function (){
         Route::post('vpn-user-block','AdministratorDataController@vpn_user_block')->name('administrator.free.user.block');
         Route::post('vpn-user-unblock','AdministratorDataController@vpn_user_unblock')->name('administrator.free.user.unblock');
         Route::post('vpn-user-cradit','AdministratorDataController@vpn_user_cradit')->name('administrator.freeuser.add.credit.bal');
+        Route::post('vpn-user-search','AdministratorDataController@vpn_user_search')->name('adminnistrato.freeuser.search');
 
         //quick user
         Route::get('quick-user','AdministratorDataController@quick_user')->name('administrator.create.quick.user');
@@ -212,6 +217,7 @@ Route::group(['middleware'=>['auth:reseller']],function (){
         Route::post('/reseller-sub-reseller-block','ResellerDataController@reseller_block')->name('reseller.subreseller.block');
         Route::post('/reseller-sub-reseller-unblock','ResellerDataController@reseller_unblock')->name('reseller.subreseller.unblock');
         Route::post('/reseller-sub-reseller-cradit','ResellerDataController@reseller_cradit')->name('reseller.subreseller.add.credit.bal');
+        Route::post('/reseller-sub-reseller-search','ResellerDataController@reseller_search')->name('reseller.subreseller.search');
 
 
         //free user
@@ -226,6 +232,7 @@ Route::group(['middleware'=>['auth:reseller']],function (){
         Route::post('/reseller-free-cradit','ResellerDataController@free_user_cradit')->name('reseller.freeuser.add.credit.bal');
         Route::get('/reseller-quick-user','ResellerDataController@quick_user')->name('reseller.create.quick.user');
         Route::post('/reseller-quick-user','ResellerDataController@quick_user_save')->name('reseller.quieck.user.save');
+        Route::post('/reseller-quick-search','ResellerDataController@quick_user_search')->name('reseller.freeuser.search');
 
 
     });
@@ -254,6 +261,7 @@ Route::group(['middleware'=>['auth:subreseller']],function (){
         Route::post('/subreseller-vpn-user-block','SuresellerController@vpn_user_block')->name('subreseller.free.user.block');
         Route::post('/subreseller-vpn-user-unblock','SuresellerController@vpn_user_unblock')->name('subreseller.free.user.unblock');
         Route::post('/subreseller-vpn-user-cradit','SuresellerController@vpn_user_cradit')->name('subreseller.freeuser.add.credit.bal');
+        Route::post('/subreseller-vpn-user-search','SuresellerController@vpn_user_search')->name('subreseller.freeuser.search');
 
         //quick user
         Route::get('/subreseller-quick-user','SuresellerController@quick_user')->name('subreseller.create.quick.user');

@@ -37,6 +37,6 @@ class ResellerLoginController extends Controller
     public function logout()
     {
         Auth::guard('reseller')->logout();
-        return redirect(route('reseller.login'));
+        return redirect(url('/'));
     }
 }

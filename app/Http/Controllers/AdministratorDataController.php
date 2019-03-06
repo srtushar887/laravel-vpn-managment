@@ -27,16 +27,28 @@ class AdministratorDataController extends Controller
 
     public function reseller_save(Request $request)
     {
-        $new_reseller = new Reseller();
-        $new_reseller->name = $request->name;
-        $new_reseller->user_name = $request->user_name;
-        $new_reseller->cradit = $request->cradit;
-        $new_reseller->password = Hash::make($request->password);
-        $new_reseller->pass_rep = $request->password;
-        $new_reseller->administrator_id = Auth::user()->id;
-        $new_reseller->is_block = 0;
-        $new_reseller->save();
-        return back()->with('success','Reseller Created Successfully');
+        $user = sub_administrator::where('id',Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit){
+            return back()->with('alert','Insuficient Balance');
+        }else{
+            $new_reseller = new Reseller();
+            $new_reseller->name = $request->name;
+            $new_reseller->user_name = $request->user_name;
+            $new_reseller->cradit = $request->cradit;
+            $new_reseller->password = Hash::make($request->password);
+            $new_reseller->pass_rep = $request->password;
+            $new_reseller->administrator_id = Auth::user()->id;
+            $new_reseller->is_block = 0;
+            $new_reseller->save();
+
+            $users = sub_administrator::where('id',Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+
+            return back()->with('success','Reseller Created Successfully');
+        }
+
     }
 
     public function reseller_edit($id)
@@ -47,16 +59,25 @@ class AdministratorDataController extends Controller
 
     public function reseller_update(Request $request)
     {
-        $reseller_edit = Reseller::where('id',$request->edit_sub_ad)->first();
-        $reseller_edit->name = $request->name;
-        $reseller_edit->user_name = $request->user_name;
-        $reseller_edit->cradit = $request->cradit;
-        $reseller_edit->password = Hash::make($request->password);
-        $reseller_edit->pass_rep = $request->password;
-        $reseller_edit->administrator_id = Auth::user()->id;
-        $reseller_edit->is_block = 0;
-        $reseller_edit->save();
-        return back()->with('success','Reseller Updated Successfully');
+        $user = sub_administrator::where('id', Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Insuficient Balance');
+        } else {
+            $reseller_edit = Reseller::where('id', $request->edit_sub_ad)->first();
+            $reseller_edit->name = $request->name;
+            $reseller_edit->user_name = $request->user_name;
+            $reseller_edit->cradit = $request->cradit;
+            $reseller_edit->password = Hash::make($request->password);
+            $reseller_edit->pass_rep = $request->password;
+            $reseller_edit->administrator_id = Auth::user()->id;
+            $reseller_edit->is_block = 0;
+            $reseller_edit->save();
+            $users = sub_administrator::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return back()->with('success', 'Reseller Updated Successfully');
+        }
     }
 
     public function reseller_delete(Request $request)
@@ -120,10 +141,33 @@ class AdministratorDataController extends Controller
         }
     }
 
+    public function reseller_search(Request $request)
+    {
+        $search = $request->search;
+        $reseller_search = Reseller::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('administrator.reseller.reseller-search',compact('reseller_search'));
+
+    }
+
+
+
     public function sub_reseller()
     {
         $all_sub_reseller = Subreseller::where('administrator_id',Auth::user()->id)->paginate(15);
         return view('administrator.subreseller.subreseller',compact('all_sub_reseller'));
+    }
+
+    public function subrelsearch(Request $request)
+    {
+        return 'ok';
+    }
+
+    public function vpn_user_search(Request $request)
+    {
+        $search = $request->search;
+        $user = User::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('administrator.freeuser.freeuser-search',compact('user'));
+
     }
 
     public function sub_reseller_create()
@@ -133,16 +177,25 @@ class AdministratorDataController extends Controller
 
     public function sub_reseller_save(Request $request)
     {
-        $new_sub_reseller = new Subreseller();
-        $new_sub_reseller->name = $request->name;
-        $new_sub_reseller->user_name = $request->user_name;
-        $new_sub_reseller->cradit = $request->cradit;
-        $new_sub_reseller->password = Hash::make($request->password);
-        $new_sub_reseller->pass_rep = $request->password;
-        $new_sub_reseller->administrator_id = Auth::user()->id;
-        $new_sub_reseller->is_block = 0;
-        $new_sub_reseller->save();
-        return redirect(route('administrator.sub.reseller'))->with('success','Sub-Reseller Created Successfully');
+        $user = sub_administrator::where('id', Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Insuficient Balance');
+        } else {
+            $new_sub_reseller = new Subreseller();
+            $new_sub_reseller->name = $request->name;
+            $new_sub_reseller->user_name = $request->user_name;
+            $new_sub_reseller->cradit = $request->cradit;
+            $new_sub_reseller->password = Hash::make($request->password);
+            $new_sub_reseller->pass_rep = $request->password;
+            $new_sub_reseller->administrator_id = Auth::user()->id;
+            $new_sub_reseller->is_block = 0;
+            $new_sub_reseller->save();
+            $users = sub_administrator::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return redirect(route('administrator.sub.reseller'))->with('success', 'Sub-Reseller Created Successfully');
+        }
     }
 
     public function sub_reseller_edit($id)
@@ -153,16 +206,26 @@ class AdministratorDataController extends Controller
 
     public function sub_reseller_update(Request $request)
     {
-        $edit_sub_reselelr = Subreseller::where('id',$request->edit_subres)->first();
-        $edit_sub_reselelr->name = $request->name;
-        $edit_sub_reselelr->user_name = $request->user_name;
-        $edit_sub_reselelr->cradit = $request->cradit;
-        $edit_sub_reselelr->password = Hash::make($request->password);
-        $edit_sub_reselelr->pass_rep = $request->password;
-        $edit_sub_reselelr->administrator_id = Auth::user()->id;
-        $edit_sub_reselelr->is_block = 0;
-        $edit_sub_reselelr->save();
-        return back()->with('success','Sub-Reseller Updated Successfully');
+        $user = sub_administrator::where('id', Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Insuficient Balance');
+        } else {
+            $edit_sub_reselelr = Subreseller::where('id', $request->edit_subres)->first();
+            $edit_sub_reselelr->name = $request->name;
+            $edit_sub_reselelr->user_name = $request->user_name;
+            $edit_sub_reselelr->cradit = $request->cradit;
+            $edit_sub_reselelr->password = Hash::make($request->password);
+            $edit_sub_reselelr->pass_rep = $request->password;
+            $edit_sub_reselelr->administrator_id = Auth::user()->id;
+            $edit_sub_reselelr->is_block = 0;
+            $edit_sub_reselelr->save();
+
+            $users = sub_administrator::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return back()->with('success', 'Sub-Reseller Updated Successfully');
+        }
     }
 
     public function sub_reseller_cahnage_permission($id)
@@ -216,6 +279,10 @@ class AdministratorDataController extends Controller
         $sub_res_add_cr->cradit = $sub_res_add_cr->cradit + $request->cradit;
         $sub_res_add_cr->exp_date = Carbon::now()->addMonth($request->cradit);
         $sub_res_add_cr->save();
+
+        $users = sub_administrator::where('id',Auth::user()->id)->first();
+        $users->cradit = $users->cradit - $request->cradit;
+        $user->save();
         return back()->with('success','Cradit Added Successfully');
     }
 

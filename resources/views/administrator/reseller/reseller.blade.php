@@ -10,7 +10,7 @@
         Create New
     </a>
     <div id="table-1_filter" class="dataTables_filter pull-right">
-        <form action="{{route('admin.reseller.search')}}" method="post">
+        <form action="{{route('administrator.reseller.serach')}}" method="post">
             @csrf
             <label>Search:
                 <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
@@ -39,6 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(count($all_resl) > 0)
                 @foreach($all_resl as $resl)
                     <tr>
                         <td>{{$resl->name}}</td>
@@ -200,6 +201,9 @@
                     </div>
 
                 @endforeach
+                    @else
+                <td colspan="8" class="text-center">No Data Availabe now</td>
+                    @endif
 
                 </tbody>
             </table>

@@ -214,6 +214,13 @@ class AdminUserNavigationController extends Controller
         return view('admin.usernavigation.subreseller-cradit-search-result',compact('subreseller_cradit_sr'));
     }
 
+    public function fre_ad_time_search(Request $request)
+    {
+        $search = $request->search;
+        $free_user_time_serach = User::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('admin.usernavigation.freeusertimesearch',compact('free_user_time_serach'));
+    }
+
 
     public function reseller()
     {
@@ -729,8 +736,16 @@ class AdminUserNavigationController extends Controller
 
     public function sub_ad_time_duration()
     {
-        $time_sub_admin = sub_administrator::paginate(15);
+        $time_sub_admin = User::paginate(15);
         return view('admin.usernavigation.sub-admin-time-duration',compact('time_sub_admin'));
+    }
+
+    public function fre_ad_time(Request $request)
+    {
+        $user = User::where('id',$request->add_time)->first();
+        $user->exp_date = $request->exp_date;
+        $user->save();
+        return redirect(route('admin.time.duration'))->with('success','Time Added Successfully');
     }
 
     public function sub_ad_time_duration_select($id)

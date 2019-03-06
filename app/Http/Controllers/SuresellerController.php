@@ -31,7 +31,7 @@ class SuresellerController extends Controller
     public function vpn_user_save(Request $request)
     {
         $user = Subreseller::where('id',Auth::user()->id)->first();
-        if ($user->cradit <= 0)
+        if ($user->cradit <  $request->cradit)
         {
             return back()->with('alert','Sorry ! Insuficient Cradit');
         }else{
@@ -47,7 +47,8 @@ class SuresellerController extends Controller
             $free_user->is_exp = null;
             $free_user->save();
 
-            $user->cradit = $request->cradit;
+            $users = Subreseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
             $user->save();
 
             return redirect(route('subreseller.freeuser'))->with('success','Free User Created Successfully');
@@ -62,18 +63,26 @@ class SuresellerController extends Controller
 
     public function vpn_user_update(Request $request)
     {
-        $edit_user = User::where('id',$request->edit_free_user)->first();
-        $edit_user->name = $request->name;
-        $edit_user->user_name = $request->user_name;
-        $edit_user->cradit = $request->cradit;
-        $edit_user->exp_date = Carbon::now()->addMonth($request->cradit);
-        $edit_user->password = Hash::make($request->password);
-        $edit_user->pass_rep = $request->password;
-        $edit_user->subreseller_id = Auth::user()->id;
-        $edit_user->is_block = 0;
-        $edit_user->is_exp = null;
-        $edit_user->save();
-        return redirect(route('subreseller.freeuser'))->with('success','Free User Updated Successfully');
+        $user = Subreseller::where('id', Auth::user()->id)->first();
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Sorry ! Insuficient Cradit');
+        } else {
+            $edit_user = User::where('id', $request->edit_free_user)->first();
+            $edit_user->name = $request->name;
+            $edit_user->user_name = $request->user_name;
+            $edit_user->cradit = $request->cradit;
+            $edit_user->exp_date = Carbon::now()->addMonth($request->cradit);
+            $edit_user->password = Hash::make($request->password);
+            $edit_user->pass_rep = $request->password;
+            $edit_user->subreseller_id = Auth::user()->id;
+            $edit_user->is_block = 0;
+            $edit_user->is_exp = null;
+            $edit_user->save();
+            $users = Subreseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return redirect(route('subreseller.freeuser'))->with('success', 'Free User Updated Successfully');
+        }
     }
 
     public function vpn_user_delete(Request $request)
@@ -101,11 +110,29 @@ class SuresellerController extends Controller
 
     public function vpn_user_cradit(Request $request)
     {
-        $free_user_crd_ad = User::where('id',$request->add_crdt)->first();
-        $free_user_crd_ad->cradit = $free_user_crd_ad->cradit + $request->cradit;
-        $free_user_crd_ad->exp_date = Carbon::now()->addMonth($request->cradit);
-        $free_user_crd_ad->save();
-        return back()->with('success','Cradit Added Successfully');
+        $user = Subreseller::where('id', Auth::user()->id)->first();
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Sorry ! Insuficient Cradit');
+        } else {
+            $free_user_crd_ad = User::where('id', $request->add_crdt)->first();
+            $free_user_crd_ad->cradit = $free_user_crd_ad->cradit + $request->cradit;
+            $free_user_crd_ad->exp_date = Carbon::now()->addMonth($request->cradit);
+            $free_user_crd_ad->save();
+
+            $users = Subreseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+
+            return back()->with('success', 'Cradit Added Successfully');
+        }
+    }
+
+    public function vpn_user_search(Request $request)
+    {
+        $search = $request->search;
+        $user = User::where('user_name','LIKE','%'.$search.'%')->get();
+        return view('subreseller.freeuser.vpn-user-search',compact('user'));
+
     }
 
     public function quick_user()
@@ -116,7 +143,7 @@ class SuresellerController extends Controller
     public function quick_user_save(Request $request)
     {
         $uss = Subreseller::where('id',Auth::user()->id)->first();
-        if ($uss->cradit <= 0)
+        if ($uss->cradit < $request->cradit)
         {
             return back()->with('alert','Insuficient Cradit');
         }else{

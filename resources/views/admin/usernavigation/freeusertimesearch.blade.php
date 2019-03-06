@@ -1,16 +1,10 @@
-@extends('layouts.administrator')
+@extends('layouts.admin')
 @section('css')
 @endsection
-@section('administrator-content')
+@section('admin-content')
 
-
-
-    <a href="{{route('adminstrator.create.free.user')}}" class="btn btn-primary pull-left">
-        <i class="entypo-plus"></i>
-        Create New
-    </a>
     <div id="table-1_filter" class="dataTables_filter pull-right">
-        <form action="{{route('adminnistrato.freeuser.search')}}" method="post">
+        <form action="{{route('admin.freeuser.time.search')}}" method="post">
             @csrf
             <label>Search:
                 <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
@@ -38,13 +32,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($all_free_user) > 0)
-                @foreach($all_free_user as $fuser)
+                @foreach($free_user_time_serach as $fuser)
                     <tr>
                         <td>{{$fuser->user_name}}</td>
-                        <td>{{$fuser->pass_rep}}</td>
-                        @if(!empty($fuser->administrator_id))
+                        <td>{{ $fuser->pass_rep}}</td>
+                        @if(!empty($fuser->upline_id))
+                            <td>{{$fuser->admin->name}}</td>
+                        @elseif(!empty($fuser->administrator_id))
                             <td>{{$fuser->administrator->name}}</td>
+                        @elseif(!empty($fuser->reseller_id))
+                            <td>{{$fuser->reseller->name}}</td>
+                        @elseif(!empty($fuser->subreseller_id))
+                            <td>{{$fuser->sureseller->name}}</td>
                         @else
                             <td>Not Set Yet</td>
                         @endif
@@ -56,31 +55,12 @@
                             <td><span class="label label-danger">Block</span></td>
                         @endif
                         <td>
-                            <a href="{{route('adminstrator.free.user.edit',$fuser->id)}}" class="btn btn-default btn-sm btn-icon icon-left" >
-                                <i class="entypo-pencil"></i>
-                                Edit
-                            </a>
 
-                            <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#free-user-delete{{$fuser->id}}">
-                                <i class="entypo-cancel"></i>
-                                Delete
-                            </a>
 
-                            @if($fuser->is_block == 0)
-                                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#free-user-block{{$fuser->id}}">
-                                    <i class="entypo-cancel"></i>
-                                    Block
-                                </a>
-                            @else
 
-                                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left" data-toggle="modal" data-target="#free-user-unblock{{$fuser->id}}">
-                                    <i class="entypo-cancel"></i>
-                                    Unblock
-                                </a>
-                            @endif
                             <a href="#" class="btn btn-default btn-sm btn-icon icon-left" data-toggle="modal" data-target="#frr-user-add-cradit{{$fuser->id}}">
                                 <i class="entypo-cancel"></i>
-                                Add Cradit
+                                Add Time
                             </a>
 
                         </td>
@@ -89,84 +69,10 @@
 
 
 
-                    <div class="modal fade custom-width modalfate" id="free-user-delete{{$fuser->id}}">
-                        <div class="modal-dialog" style="width: 60%;">
-                            <form action="{{route('administrator.free.user.delete')}}" method="post">
-                                @csrf
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Delete Free User</h4>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <input type="hidden" name="delete_fre_user" value="{{$fuser->id}}">
-                                        <h3 class="text-center">are you sure to delete <strong>{{$fuser->user_name}}</strong> ?</h3>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" id="" class="btn btn-info">Delete</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="modal fade custom-width modalfate" id="free-user-block{{$fuser->id}}">
-                        <div class="modal-dialog" style="width: 60%;">
-                            <form action="{{route('administrator.free.user.block')}}" method="post">
-                                @csrf
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Block Free User</h4>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <input type="hidden" name="block_free_user" value="{{$fuser->id}}">
-                                        <h3 class="text-center">are you sure to block <strong>{{$fuser->user_name}}</strong> ?</h3>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" id="" class="btn btn-info">Block</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="modal fade custom-width modalfate" id="free-user-unblock{{$fuser->id}}">
-                        <div class="modal-dialog" style="width: 60%;">
-                            <form action="{{route('administrator.free.user.unblock')}}" method="post">
-                                @csrf
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Unblock Free User</h4>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <input type="hidden" name="unblock_free_user" value="{{$fuser->id}}">
-                                        <h3 class="text-center">are you sure to unblock <strong>{{$fuser->user_name}}</strong> ?</h3>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" id="" class="btn btn-info">Unblock</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
 
                     <div class="modal fade custom-width modalfate" id="frr-user-add-cradit{{$fuser->id}}">
                         <div class="modal-dialog" style="width: 60%;">
-                            <form action="{{route('administrator.freeuser.add.credit.bal')}}" method="post">
+                            <form action="{{route('freeuser.add.time')}}" method="post">
                                 @csrf
                                 <div class="modal-content">
 
@@ -180,8 +86,8 @@
 
                                         <div class="form-group">
                                             <label>Cradit</label>
-                                            <input type="hidden" name="add_crdt" value="{{$fuser->id}}">
-                                            <input type="text"  class="form-control fullname" name="cradit"  placeholder="Enter Cradit">
+                                            <input type="hidden" name="add_time" value="{{$fuser->id}}">
+                                            <input type="datetime-local"  class="form-control fullname" name="exp_date"  placeholder="Enter Cradit">
                                         </div>
 
 
@@ -198,9 +104,7 @@
                     </div>
 
                 @endforeach
-                    @else
-                <td colspan="7" class="text-center">No Data Availabe now</td>
-                @endif
+
                 </tbody>
             </table>
         </div>

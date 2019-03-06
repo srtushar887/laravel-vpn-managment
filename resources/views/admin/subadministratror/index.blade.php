@@ -39,6 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(count($all_sub_adminitrator) > 0)
                 @foreach($all_sub_adminitrator as $subad)
                 <tr>
                     <td>{{$subad->name}}</td>
@@ -255,6 +256,10 @@
                 </div>
 
                     @endforeach
+                    @else
+
+                    <td colspan="8" class="text-center">No Data Availabe now</td>
+                @endif
 
                 </tbody>
             </table>

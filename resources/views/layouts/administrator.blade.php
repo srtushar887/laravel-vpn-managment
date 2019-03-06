@@ -192,7 +192,7 @@
 
 
                             <li>
-                                <a href="{{route('admin.logout')}}">
+                                <a href="{{route('administrator.logout')}}">
                                     <i class="entypo-logout right"></i>
                                     Log Out
                                 </a>

@@ -25,16 +25,25 @@ class ResellerDataController extends Controller
 
     public function reseller_save(Request $request)
     {
-        $new_sub_reseller = new Subreseller();
-        $new_sub_reseller->name = $request->name;
-        $new_sub_reseller->user_name = $request->user_name;
-        $new_sub_reseller->cradit = $request->cradit;
-        $new_sub_reseller->password = Hash::make($request->password);
-        $new_sub_reseller->pass_rep = $request->password;
-        $new_sub_reseller->reseller_id = Auth::user()->id;
-        $new_sub_reseller->is_block = 0;
-        $new_sub_reseller->save();
-        return redirect(route('reseller.sub.reseller'))->with('success','Sub-Reseller Created Successfully');
+        $user = Reseller::where('id', Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Insuficient Balance');
+        } else {
+            $new_sub_reseller = new Subreseller();
+            $new_sub_reseller->name = $request->name;
+            $new_sub_reseller->user_name = $request->user_name;
+            $new_sub_reseller->cradit = $request->cradit;
+            $new_sub_reseller->password = Hash::make($request->password);
+            $new_sub_reseller->pass_rep = $request->password;
+            $new_sub_reseller->reseller_id = Auth::user()->id;
+            $new_sub_reseller->is_block = 0;
+            $new_sub_reseller->save();
+            $users = Reseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return redirect(route('reseller.sub.reseller'))->with('success', 'Sub-Reseller Created Successfully');
+        }
     }
 
     public function reseller_edit($id)
@@ -45,16 +54,25 @@ class ResellerDataController extends Controller
 
     public function reseller_update(Request $request)
     {
-        $edit_sub_reselelr = Subreseller::where('id',$request->edit_subres)->first();
-        $edit_sub_reselelr->name = $request->name;
-        $edit_sub_reselelr->user_name = $request->user_name;
-        $edit_sub_reselelr->cradit = $request->cradit;
-        $edit_sub_reselelr->password = Hash::make($request->password);
-        $edit_sub_reselelr->pass_rep = $request->password;
-        $edit_sub_reselelr->administrator_id = Auth::user()->id;
-        $edit_sub_reselelr->is_block = 0;
-        $edit_sub_reselelr->save();
-        return redirect(route('reseller.sub.reseller'))->with('success','Sub-Reseller Updated Successfully');
+        $user = Reseller::where('id', Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Insuficient Balance');
+        } else {
+            $edit_sub_reselelr = Subreseller::where('id', $request->edit_subres)->first();
+            $edit_sub_reselelr->name = $request->name;
+            $edit_sub_reselelr->user_name = $request->user_name;
+            $edit_sub_reselelr->cradit = $request->cradit;
+            $edit_sub_reselelr->password = Hash::make($request->password);
+            $edit_sub_reselelr->pass_rep = $request->password;
+            $edit_sub_reselelr->administrator_id = Auth::user()->id;
+            $edit_sub_reselelr->is_block = 0;
+            $edit_sub_reselelr->save();
+            $users = Reseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return redirect(route('reseller.sub.reseller'))->with('success', 'Sub-Reseller Updated Successfully');
+        }
     }
 
     public function reseller_delete(Request $request)
@@ -82,11 +100,36 @@ class ResellerDataController extends Controller
 
     public function reseller_cradit(Request $request)
     {
-        $sub_res_add_cr = Subreseller::where('id',$request->add_crdt)->first();
-        $sub_res_add_cr->cradit = $sub_res_add_cr->cradit + $request->cradit;
-        $sub_res_add_cr->exp_date = Carbon::now()->addMonth($request->cradit);
-        $sub_res_add_cr->save();
-        return redirect(route('reseller.sub.reseller'))->with('success','Cradit Added Successfully');
+        $user = Reseller::where('id', Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Insuficient Balance');
+        } else {
+            $sub_res_add_cr = Subreseller::where('id', $request->add_crdt)->first();
+            $sub_res_add_cr->cradit = $sub_res_add_cr->cradit + $request->cradit;
+            $sub_res_add_cr->exp_date = Carbon::now()->addMonth($request->cradit);
+            $sub_res_add_cr->save();
+            $users = Reseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return redirect(route('reseller.sub.reseller'))->with('success', 'Cradit Added Successfully');
+        }
+    }
+
+    public function reseller_search(Request $request)
+    {
+        $search = $request->search;
+        $user = Subreseller::where('user_name','LIKE','%'.$search.'%')->where('reseller_id',Auth::user()->id)->get();
+        return view('resellerdata.sebreseller.reseller-search',compact('user'));
+
+    }
+
+    public function quick_user_search(Request $request)
+    {
+        $search = $request->search;
+        $user = User::where('user_name','LIKE','%'.$search.'%')->where('reseller_id',Auth::user()->id)->get();
+        return view('resellerdata.freeuser.freeuser-search',compact('user'));
+
     }
 
     public function free_user()
@@ -103,7 +146,7 @@ class ResellerDataController extends Controller
     public function free_user_save(Request $request)
     {
         $user = Reseller::where('id',Auth::user()->id)->first();
-        if ($user->cradit > $request->cradit)
+        if ($user->cradit < $request->cradit)
         {
             return back()->with('alert','Sorry ! Insuficient Cradit');
         }else{
@@ -119,7 +162,8 @@ class ResellerDataController extends Controller
             $free_user->is_exp = null;
             $free_user->save();
 
-            $user->cradit = $request->cradit;
+            $users = Reseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
             $user->save();
 
             return redirect(route('reseller.freeuser'))->with('success','Free User Created Successfully');
@@ -134,18 +178,27 @@ class ResellerDataController extends Controller
 
     public function free_user_update(Request $request)
     {
-        $edit_user = User::where('id',$request->edit_free_user)->first();
-        $edit_user->name = $request->name;
-        $edit_user->user_name = $request->user_name;
-        $edit_user->cradit = $request->cradit;
-        $edit_user->exp_date = Carbon::now()->addMonth($request->cradit);
-        $edit_user->password = Hash::make($request->password);
-        $edit_user->pass_rep = $request->password;
-        $edit_user->reseller_id = Auth::user()->id;
-        $edit_user->is_block = 0;
-        $edit_user->is_exp = null;
-        $edit_user->save();
-        return redirect(route('reseller.freeuser'))->with('success','Free User Updated Successfully');
+        $user = Reseller::where('id', Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Insuficient Balance');
+        } else {
+            $edit_user = User::where('id', $request->edit_free_user)->first();
+            $edit_user->name = $request->name;
+            $edit_user->user_name = $request->user_name;
+            $edit_user->cradit = $request->cradit;
+            $edit_user->exp_date = Carbon::now()->addMonth($request->cradit);
+            $edit_user->password = Hash::make($request->password);
+            $edit_user->pass_rep = $request->password;
+            $edit_user->reseller_id = Auth::user()->id;
+            $edit_user->is_block = 0;
+            $edit_user->is_exp = null;
+            $edit_user->save();
+            $users = Reseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return redirect(route('reseller.freeuser'))->with('success', 'Free User Updated Successfully');
+        }
     }
 
     public function free_user_delete(Request $request)
@@ -173,11 +226,21 @@ class ResellerDataController extends Controller
 
     public function free_user_cradit(Request $request)
     {
-        $free_user_crd_ad = User::where('id',$request->add_crdt)->first();
-        $free_user_crd_ad->cradit = $free_user_crd_ad->cradit + $request->cradit;
-        $free_user_crd_ad->exp_date = Carbon::now()->addMonth($request->cradit);
-        $free_user_crd_ad->save();
-        return back()->with('success','Cradit Added Successfully');
+        $user = Reseller::where('id', Auth::user()->id)->first();
+
+        if ($user->cradit < $request->cradit) {
+            return back()->with('alert', 'Insuficient Balance');
+        } else {
+            $free_user_crd_ad = User::where('id', $request->add_crdt)->first();
+            $free_user_crd_ad->cradit = $free_user_crd_ad->cradit + $request->cradit;
+            $free_user_crd_ad->exp_date = Carbon::now()->addMonth($request->cradit);
+            $free_user_crd_ad->save();
+
+            $users = Reseller::where('id', Auth::user()->id)->first();
+            $users->cradit = $users->cradit - $request->cradit;
+            $user->save();
+            return back()->with('success', 'Cradit Added Successfully');
+        }
     }
 
     public function quick_user()

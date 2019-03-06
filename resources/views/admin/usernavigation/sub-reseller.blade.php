@@ -38,6 +38,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(count($all_sub_reseller) > 0)
                 @foreach($all_sub_reseller as $subresl)
                     <tr>
                         <td>{{$subresl->name}}</td>
@@ -206,6 +207,10 @@
 
 
                 @endforeach
+                @else
+
+                    <td colspan="8" class="text-center">No Data Availabe now</td>
+                @endif
 
                 </tbody>
             </table>

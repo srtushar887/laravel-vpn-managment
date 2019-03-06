@@ -10,7 +10,7 @@
         Create New
     </a>
     <div id="table-1_filter" class="dataTables_filter pull-right">
-        <form action="{{route('admin.freeuser.search')}}" method="post">
+        <form action="{{route('reseller.freeuser.search')}}" method="post">
             @csrf
             <label>Search:
                 <input type="search" class="" name="search" placeholder="" aria-controls="table-1">
@@ -38,6 +38,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(count($all_free_user) > 0)
                 @foreach($all_free_user as $fuser)
                     <tr>
                         <td>{{$fuser->user_name}}</td>
@@ -197,6 +198,9 @@
                     </div>
 
                 @endforeach
+                @else
+                    <td colspan="8" class="text-center">No Data Availabe now</td>
+                @endif
 
                 </tbody>
             </table>

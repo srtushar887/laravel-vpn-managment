@@ -34,6 +34,6 @@ class SubresellerLoginController extends Controller
     public function logout()
     {
         Auth::guard('subreseller')->logout();
-        return redirect(route('subreseller.logout'));
+        return redirect(url('/'));
     }
 }
