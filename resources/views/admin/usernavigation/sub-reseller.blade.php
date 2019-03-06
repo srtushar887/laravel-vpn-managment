@@ -42,9 +42,13 @@
                     <tr>
                         <td>{{$subresl->name}}</td>
                         <td>{{$subresl->user_name}}</td>
-                        <td>{{ decrypt($subresl->password)}}</td>
+                        <td>{{ $subresl->pass_rep}}</td>
                         @if(!empty($subresl->upline_id))
                         <td>{{$subresl->admin->name}}</td>
+                        @elseif(!empty($subresl->administrator_id))
+                            <td>{{$subresl->administrator->name}}</td>
+                        @elseif(!empty($subresl->reseller_id))
+                            <td>{{$subresl->reseller->name}}</td>
                         @else
                             <td>Not Set Yet</td>
                         @endif
@@ -56,7 +60,7 @@
                             <td><span class="label label-danger">Block</span></td>
                         @endif
                         <td>
-                            <a href="{{route('sub.reseller.edit',$subresl->id)}}" class="btn btn-default btn-sm btn-icon icon-left">
+                            <a href="{{route('admin.sub.reseller.edit',$subresl->id)}}" class="btn btn-default btn-sm btn-icon icon-left">
                                 <i class="entypo-pencil"></i>
                                 Edit
                             </a>
@@ -91,63 +95,6 @@
                     </tr>
 
 
-                    <div class="modal fade custom-width modalfate" id="subreseller-edit{{$subresl->id}}">
-                        <div class="modal-dialog" style="width: 60%;">
-                            <form action="{{route('admin.subreseller.update')}}" method="post">
-                                @csrf
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Update Sub-Reseller</h4>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="hidden" name="edit_subres" value="{{$subresl->id}}">
-                                                    <input type="text"  class="form-control fullname" name="name" value="{{$subresl->name}}" placeholder="Enter Full name">
-                                                    {{--<p class="text-left fullnameerror" style="color: red">Please Enter Name !</p>--}}
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>User Name</label>
-                                                    <input type="text" name="user_name" class="form-control username" value="{{$subresl->user_name}}" placeholder="Enter User Name">
-                                                    {{--<p class="text-left usernameerror" style="color: red">Please Enter User Name !</p>--}}
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Credits</label>
-                                                    <input type="number" name="cradit" class="form-control cradit" value="{{$subresl->cradit}}" placeholder="Enter Credits">
-                                                    {{--<p class="text-left craditerror" style="color: red">Please Enter Credits !</p>--}}
-                                                </div>
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="text" name="password" class="form-control password" value="{{decrypt($subresl->password)}}" placeholder="Enter Password">
-                                                    {{--<p class="text-left passworderror" style="color: red">Please Enter Password !</p>--}}
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" id="" class="btn btn-info">Update</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
 
                     <div class="modal fade custom-width modalfate" id="subreseller-delete{{$subresl->id}}">
                         <div class="modal-dialog" style="width: 60%;">

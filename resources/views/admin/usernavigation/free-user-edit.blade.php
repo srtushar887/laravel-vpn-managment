@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label class="control-label">Password</label>
 
-                    <input type="text" class="form-control" name="password" value="{{decrypt($edit_free_user->password)}}" data-validate="maxlength[2]" placeholder="Enter Password" />
+                    <input type="text" class="form-control" name="password" value="{{$edit_free_user->pass_rep }}" data-validate="maxlength[2]" placeholder="Enter Password" />
                 </div>
 
 

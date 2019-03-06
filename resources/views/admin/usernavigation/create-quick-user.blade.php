@@ -20,13 +20,13 @@
                 <div class="form-group">
                     <label class="control-label">User Name</label>
 
-                    <input type="text" class="form-control" name="user_name" value="{{rand(000000,999999)}}" data-validate="email" placeholder="Enter User Name" />
+                    <input type="text" class="form-control" name="user_name" value="{{rand(000000,999999)}}" data-validate="email" placeholder="Enter User Name" readonly/>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Password</label>
 
-                    <input type="text" class="form-control" name="password" value="{{rand(000000,999999)}}" data-validate="maxlength[2]" placeholder="Enter Password" />
+                    <input type="text" class="form-control" name="password" value="{{rand(000000,999999)}}" data-validate="maxlength[2]" placeholder="Enter Password" readonly/>
                 </div>
                 {{--<div class="form-group">--}}
                     {{--<label class="control-label">Select Permision</label>--}}

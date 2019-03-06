@@ -113,12 +113,7 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="{{route('admin.bulk.user')}}" >
-                        <i class="entypo-monitor"></i>
-                        <span class="title">Free User</span>
-                    </a>
-                </li>
+
 
                 {{--<li>--}}
                     {{--<a href="{{route('admin.all.user')}}" >--}}

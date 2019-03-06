@@ -44,7 +44,7 @@
                     <td>{{$subad->name}}</td>
                     <td>{{$subad->user_name}}</td>
 {{--                    <td>{{ decrypt($subad->password)}}</td>--}}
-                    <td>{{ $subad->password}}</td>
+                    <td>{{ $subad->pass_rep}}</td>
                     <td>{{$subad->admin->name}}</td>
                     <td>{{$subad->cradit}}</td>
                     <td>{{$subad->created_at}}</td>

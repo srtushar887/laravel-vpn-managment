@@ -36,9 +36,10 @@ class AdminUserNavigationController extends Controller
         $create_sub_administrator->is_active = 0;
 //        $create_sub_administrator->password = encrypt($request->password);
         $create_sub_administrator->password = Hash::make($request->password);
+        $create_sub_administrator->pass_rep = $request->password;
         $create_sub_administrator->upline_id = Auth::user()->id;
         $create_sub_administrator->save();
-        return back()->with('success','Sub-Administratror Saved Successfully');
+        return redirect(route('admin.sub.administratio'))->with('success','Sub-Administratror Saved Successfully');
     }
 
     public function sub_administrator_edit_data($id)
@@ -58,10 +59,11 @@ class AdminUserNavigationController extends Controller
         $sub_ad_edit->exp_date = Carbon::now()->addMonth($request->cradit);
         $sub_ad_edit->is_exp = 0;
         $sub_ad_edit->is_active = 0;
-        $sub_ad_edit->password = encrypt($request->password);
+        $sub_ad_edit->password = Hash::make($request->password);
+        $sub_ad_edit->pass_rep = $request->password;
         $sub_ad_edit->upline_id = Auth::user()->id;
         $sub_ad_edit->save();
-        return back()->with('success','Sub-Administratror Updated Successfully');
+        return redirect(route('admin.sub.administratio'))->with('success','Sub-Administratror Updated Successfully');
 
     }
 
@@ -88,7 +90,8 @@ class AdminUserNavigationController extends Controller
             $new_reseller->name = $request->name;
             $new_reseller->user_name = $request->user_name;
             $new_reseller->cradit = $request->cradit;
-            $new_reseller->password = encrypt($request->password);
+            $new_reseller->password = Hash::make($request->password);
+            $new_reseller->pass_rep = $request->password;
             $new_reseller->upline_id = Auth::user()->id;
             $new_reseller->save();
 
@@ -103,7 +106,8 @@ class AdminUserNavigationController extends Controller
             $new_sub_reseller->name = $request->name;
             $new_sub_reseller->user_name = $request->user_name;
             $new_sub_reseller->cradit = $request->cradit;
-            $new_sub_reseller->password = encrypt($request->password);
+            $new_sub_reseller->password = Hash::make($request->password);
+            $new_sub_reseller->pass_rep = $request->password;
             $new_sub_reseller->upline_id = Auth::user()->id;
             $new_sub_reseller->save();
 
@@ -228,11 +232,12 @@ class AdminUserNavigationController extends Controller
         $new_reseller->name = $request->name;
         $new_reseller->user_name = $request->user_name;
         $new_reseller->cradit = $request->cradit;
-        $new_reseller->password = encrypt($request->password);
+        $new_reseller->password = Hash::make($request->password);
+        $new_reseller->pass_rep = $request->password;
         $new_reseller->upline_id = Auth::user()->id;
         $new_reseller->is_block = 0;
         $new_reseller->save();
-        return back()->with('success','Reseller Created Successfully');
+        return redirect(route('admin.reseller'))->with('success','Reseller Created Successfully');
     }
 
     public function reseller_edit_data($id)
@@ -247,11 +252,12 @@ class AdminUserNavigationController extends Controller
         $reseller_edit->name = $request->name;
         $reseller_edit->user_name = $request->user_name;
         $reseller_edit->cradit = $request->cradit;
-        $reseller_edit->password = encrypt($request->password);
+        $reseller_edit->password = Hash::make($request->password);
+        $reseller_edit->pass_rep = $request->password;
         $reseller_edit->upline_id = Auth::user()->id;
         $reseller_edit->is_block = 0;
         $reseller_edit->save();
-        return back()->with('success','Reseller Updated Successfully');
+        return redirect(route('admin.reseller'))->with('success','Reseller Updated Successfully');
     }
 
     public function reseller_delete(Request $request)
@@ -277,7 +283,8 @@ class AdminUserNavigationController extends Controller
             $create_sub_administrator->user_name = $request->user_name;
             $create_sub_administrator->cradit = $request->cradit;
             $create_sub_administrator->is_exp = 0;
-            $create_sub_administrator->password = encrypt($request->password);
+            $create_sub_administrator->password = Hash::make($request->password);
+            $create_sub_administrator->pass_rep = $request->password;
             $create_sub_administrator->upline_id = Auth::user()->id;
             $create_sub_administrator->save();
 
@@ -292,7 +299,8 @@ class AdminUserNavigationController extends Controller
             $new_sub_reseller->name = $request->name;
             $new_sub_reseller->user_name = $request->user_name;
             $new_sub_reseller->cradit = $request->cradit;
-            $new_sub_reseller->password = encrypt($request->password);
+            $new_sub_reseller->password = Hash::make($request->password);
+            $new_sub_reseller->pass_rep = $request->password;
             $new_sub_reseller->upline_id = Auth::user()->id;
             $new_sub_reseller->save();
 
@@ -345,7 +353,8 @@ class AdminUserNavigationController extends Controller
         $new_sub_reseller->name = $request->name;
         $new_sub_reseller->user_name = $request->user_name;
         $new_sub_reseller->cradit = $request->cradit;
-        $new_sub_reseller->password = encrypt($request->password);
+        $new_sub_reseller->password = Hash::make($request->password);
+        $new_sub_reseller->pass_rep = $request->password;
         $new_sub_reseller->upline_id = Auth::user()->id;
         $new_sub_reseller->is_block = 0;
         $new_sub_reseller->save();
@@ -365,7 +374,8 @@ class AdminUserNavigationController extends Controller
         $edit_sub_reselelr->name = $request->name;
         $edit_sub_reselelr->user_name = $request->user_name;
         $edit_sub_reselelr->cradit = $request->cradit;
-        $edit_sub_reselelr->password = encrypt($request->password);
+        $edit_sub_reselelr->password = Hash::make($request->password);
+        $edit_sub_reselelr->pass_rep = $request->password;
         $edit_sub_reselelr->upline_id = Auth::user()->id;
         $edit_sub_reselelr->is_block = 0;
         $edit_sub_reselelr->save();
@@ -396,7 +406,8 @@ class AdminUserNavigationController extends Controller
             $create_sub_administrator->user_name = $request->user_name;
             $create_sub_administrator->cradit = $request->cradit;
             $create_sub_administrator->is_exp = 0;
-            $create_sub_administrator->password = encrypt($request->password);
+            $create_sub_administrator->password = Hash::make($request->password);
+            $create_sub_administrator->pass_rep = $request->password;
             $create_sub_administrator->upline_id = Auth::user()->id;
             $create_sub_administrator->save();
 
@@ -411,7 +422,8 @@ class AdminUserNavigationController extends Controller
             $new_reseller->name = $request->name;
             $new_reseller->user_name = $request->user_name;
             $new_reseller->cradit = $request->cradit;
-            $new_reseller->password = encrypt($request->password);
+            $new_reseller->password = Hash::make($request->password);
+            $new_reseller->pass_rep = $request->password;
             $new_reseller->upline_id = Auth::user()->id;
             $new_reseller->save();
 
@@ -514,7 +526,8 @@ class AdminUserNavigationController extends Controller
         $free_user->name = $request->name;
         $free_user->user_name = $request->user_name;
         $free_user->cradit = $request->cradit;
-        $free_user->password = encrypt($request->password);
+        $free_user->password = Hash::make($request->password);
+        $free_user->pass_rep = $request->password;
         $free_user->upline_id = Auth::user()->id;
         $free_user->is_block = 0;
         $free_user->is_block = 0;
@@ -537,7 +550,8 @@ class AdminUserNavigationController extends Controller
         $edit_user->name = $request->name;
         $edit_user->user_name = $request->user_name;
         $edit_user->cradit = $request->cradit;
-        $edit_user->password = encrypt($request->password);
+        $edit_user->password = Hash::make($request->password);
+        $edit_user->pass_rep = $request->password;
         $edit_user->upline_id = Auth::user()->id;
         $edit_user->is_block = 0;
         $edit_user->is_block = 0;
@@ -572,6 +586,7 @@ class AdminUserNavigationController extends Controller
             $create_sub_administrator->is_exp = 0;
             $create_sub_administrator->is_active = 0;
             $create_sub_administrator->password = encrypt($request->password);
+            $create_sub_administrator->pass_rep = $request->password;
             $create_sub_administrator->upline_id = Auth::user()->id;
             $create_sub_administrator->save();
 
@@ -588,7 +603,8 @@ class AdminUserNavigationController extends Controller
             $new_reseller->name = $request->name;
             $new_reseller->user_name = $request->user_name;
             $new_reseller->cradit = $request->cradit;
-            $new_reseller->password = encrypt($request->password);
+            $new_reseller->password = Hash::make($request->password);
+            $new_reseller->pass_rep = $request->password;
             $new_reseller->upline_id = Auth::user()->id;
             $new_reseller->save();
 
@@ -604,7 +620,8 @@ class AdminUserNavigationController extends Controller
             $new_sub_reseller->name = $request->name;
             $new_sub_reseller->user_name = $request->user_name;
             $new_sub_reseller->cradit = $request->cradit;
-            $new_sub_reseller->password = encrypt($request->password);
+            $new_sub_reseller->password = Hash::make($request->password);
+            $new_sub_reseller->pass_rep = $request->password;
             $new_sub_reseller->upline_id = Auth::user()->id;
             $new_sub_reseller->is_block = 0;
             $new_sub_reseller->save();

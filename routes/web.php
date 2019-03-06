@@ -51,7 +51,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::get('reseller','AdminUserNavigationController@reseller')->name('admin.reseller');
        Route::get('create-reseller','AdminUserNavigationController@create_reseller')->name('craete.reseller');
        Route::post('reseller','AdminUserNavigationController@reseller_create')->name('admin.reseller.create');
-       Route::get('reseller-edit/{id}','AdminUserNavigationController@reseller_edit_data')->name('reseller.edit');
+       Route::get('reseller-edit/{id}','AdminUserNavigationController@reseller_edit_data')->name('admin.reseller.edit');
        Route::post('reseller-edit-data','AdminUserNavigationController@reseller_edit')->name('admin.reseller.update');
        Route::post('reseller-delete','AdminUserNavigationController@reseller_delete')->name('admin.reseller.delete');
        Route::get('reseller-permission-change/{id}','AdminUserNavigationController@reseller_permission_chnage')->name('admin.reseller.chnageper');
@@ -68,7 +68,7 @@ Route::group(['middleware'=>['auth:admin']],function (){
        Route::get('sub-reseller','AdminUserNavigationController@sub_reseller')->name('admin.sub.reseller');
        Route::get('create-sub-reseller','AdminUserNavigationController@sub_reseller_create_new')->name('create.subreseller');
        Route::post('sub-reseller','AdminUserNavigationController@sub_reseller_create')->name('admin.subreseller.create');
-       Route::get('sub-reseller-edit/{id}','AdminUserNavigationController@sub_reseller_edit_data')->name('sub.reseller.edit');
+       Route::get('sub-reseller-edit/{id}','AdminUserNavigationController@sub_reseller_edit_data')->name('admin.sub.reseller.edit');
        Route::post('sub-reseller-edit-data','AdminUserNavigationController@sub_reseller_edit')->name('admin.subreseller.update');
        Route::post('sub-reseller-delete','AdminUserNavigationController@sub_reseller_delete')->name('admin.subreseller.delete');
        Route::get('sub-reseller-permission-change/{id}','AdminUserNavigationController@sub_reseller_permission_chnage')->name('admin.subreseller.chnageper');

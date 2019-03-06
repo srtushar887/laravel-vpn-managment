@@ -126,19 +126,29 @@
                     </button>
                     </a>
                 </div>
+            <div class="form-group">
+                <a href="{{route('administrator.login')}}">
+                <button type="submit" class="btn btn-primary btn-block btn-login">
+                    <i class="entypo-login"></i>
+                    Login As Sub Administrator
+                </button>
+                </a>
+            </div>
                 <div class="form-group">
+                    <a href="{{route('reseller.login')}}">
                     <button type="submit" class="btn btn-primary btn-block btn-login">
                         <i class="entypo-login"></i>
                         Login As Reseller
                     </button>
+                    </a>
                 </div>
                 <div class="form-group">
-
+                    <a href="{{route('subreseller.login')}}">
                     <button type="button" class="btn btn-primary btn-block btn-login">
                         <i class="entypo-login"></i>
                         Login As Sub-Reseller
                     </button>
-
+                    </a>
                 </div>
 
 

@@ -43,7 +43,8 @@
                     <tr>
                         <td>{{$subad->name}}</td>
                         <td>{{$subad->user_name}}</td>
-                        <td>{{ decrypt($subad->password)}}</td>
+                        {{--                    <td>{{ decrypt($subad->password)}}</td>--}}
+                        <td>{{ $subad->pass_rep}}</td>
                         <td>{{$subad->admin->name}}</td>
                         <td>{{$subad->cradit}}</td>
                         <td>{{$subad->created_at}}</td>
@@ -128,7 +129,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Password</label>
-                                                    <input type="text" name="password" class="form-control password" value="{{decrypt($subad->password)}}" placeholder="Enter Password">
+                                                    <input type="text" name="password" class="form-control password" value="" placeholder="Enter Password">
                                                     <p class="text-left passworderror" style="color: red">Please Enter Password !</p>
                                                 </div>
 

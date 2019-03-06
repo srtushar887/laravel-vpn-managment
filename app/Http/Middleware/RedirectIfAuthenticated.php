@@ -28,6 +28,16 @@ class RedirectIfAuthenticated
                     return redirect()->route('administrator.dashboard');
                 }
                 break;
+            case 'reseller':
+                if(Auth::guard($guard)->check()){
+                    return redirect()->route('reseller.dashboard');
+                }
+                break;
+            case 'subreseller':
+                if(Auth::guard($guard)->check()){
+                    return redirect()->route('subreseller.dashboard');
+                }
+                break;
 
             default:
                 if (Auth::guard($guard)->check()) {

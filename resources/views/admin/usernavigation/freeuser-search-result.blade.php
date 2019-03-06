@@ -41,9 +41,15 @@
                 @foreach($free_user_sr as $fuser)
                     <tr>
                         <td>{{$fuser->user_name}}</td>
-                        <td>{{ decrypt($fuser->password)}}</td>
+                        <td>{{ $fuser->pass_rep}}</td>
                         @if(!empty($fuser->upline_id))
                             <td>{{$fuser->admin->name}}</td>
+                        @elseif(!empty($fuser->administrator_id))
+                            <td>{{$fuser->administrator->name}}</td>
+                        @elseif(!empty($fuser->reseller_id))
+                            <td>{{$fuser->reseller->name}}</td>
+                        @elseif(!empty($fuser->subreseller_id))
+                            <td>{{$fuser->sureseller->name}}</td>
                         @else
                             <td>Not Set Yet</td>
                         @endif
